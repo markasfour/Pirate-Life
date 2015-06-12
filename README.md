@@ -9,13 +9,13 @@ Clone this repository by running the following in a terminal:
 
 Then enter the `src` folder.
 There you will find the `EtoPtranslator.sh` executable.
-Run the program by running the following in a terminal:
+Execute the program by running the following in a terminal:
 
     ./EtoPtranslator.sh
 
 ##Features
 
-The current working version of English-to-Pirate translator allows a user to enter a sentence in English and receive in return a Pirate translated version of their sentence.
+The current working version of English-to-Pirate translator allows a user to enter a sentence in English and, in return, receive a Pirate translated version of their sentence.
 
 ##Bugs and Limitations
 
@@ -32,3 +32,5 @@ The current working version of English-to-Pirate translator allows a user to ent
 * Make a clean user interface
 
 * Tidy the code so that adding to the Pirate dictionary can easily be done by anyone
+
+* Add to Pirate dictionary
