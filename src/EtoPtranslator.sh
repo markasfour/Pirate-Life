@@ -74,6 +74,8 @@ function Print_Skull
 clear
 echo "       Welcome to English to Pirate translator!"
 Print_Skull
+echo "            Enter Q to quit, C to clear"
+echo ""
 sentence=""
 Q_command="Q"
 C_command="C"
@@ -82,7 +84,6 @@ while true; do
 	if [ $1 -eq ""]; then
 		
 		echo "Enter your English sentence: "
-		echo "Enter Q to quit, C to clear"
 		read sentence
 
 		if [ "$sentence" == "$Q_command" ]; then
@@ -90,6 +91,8 @@ while true; do
 		elif [ "$sentence" == "$C_command" ]; then
 			clear
 			Print_Skull
+			echo "            Enter Q to quit, C to clear"
+			echo ""
 		else
 			P_sent=$sentence
 			
