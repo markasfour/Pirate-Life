@@ -50,32 +50,57 @@ function Trans_to_Pirate
 	P_sent=${P_sent//You/Ye}
 }
 
+function Print_Skull
+{
+	echo "                       "______
+	echo "                    ".-\""     " \"-.
+	echo "                   "/"           " \\
+	echo "       _          "\|"              "\|"         " _ 
+	echo "      "\( \\ "        "\|,"  ".-."  ".-."  ",\|"         "/ \)
+	echo "       "\> \"=._"     "\| \)\(__\/"  "\\__\)\(" "\|"     "_.=\" \<
+	echo "      "\(_/\"=._\"=._ \|/"     "/\\ "    "\\\| _.=\"_.=\"\\_\)
+	echo "             "\"=._ \(_"     "^^"     "_\) _.=\" 
+	echo "                 "\"=\\__\|IIIIII\|__/=\"
+	echo "                _".=\"\| \\IIIIII/ \|\"=._
+	echo "      _     _".=\"_.=\"\\ "         "/\"=._\"=._"     "_
+	echo "     "\( \\_.=\"_.=\""     "\`--------\`"     "\"=._\"=._/ \)
+	echo "      "\> _.=\""                            "\"=._ \<
+	echo "     "\(_/"                                    "\\_\)
+	echo "" 
+}
+
 
 #Main function
-echo "Welcome to English to Pirate translator!"
+clear
+echo "       Welcome to English to Pirate translator!"
+Print_Skull
 sentence=""
 Q_command="Q"
+C_command="C"
 
 while true; do
 	if [ $1 -eq ""]; then
 		
 		echo "Enter your English sentence: "
-		echo "Enter Q to quit"
+		echo "Enter Q to quit, C to clear"
 		read sentence
 
 		if [ "$sentence" == "$Q_command" ]; then
 			break
+		elif [ "$sentence" == "$C_command" ]; then
+			clear
+			Print_Skull
+		else
+			P_sent=$sentence
+			
+			#trans to pirate
+			Trans_to_Pirate
+
+			echo "Translated to Pirate:"
+			echo $P_sent
+			echo "" 
 		fi
-
-		P_sent=$sentence
-		
-		#trans to pirate
-		Trans_to_Pirate
-
-		echo "Translated to Pirate:"
-		echo $P_sent
-		
 	fi
 done
 
-echo "Till we meet again, me lad!"
+echo "Till we set sail again, me lad!"
