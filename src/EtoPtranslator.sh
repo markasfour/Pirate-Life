@@ -50,18 +50,32 @@ function Trans_to_Pirate
 	P_sent=${P_sent//You/Ye}
 }
 
-if [ $1 -eq ""]; then
-	echo "Welcome to English to Pirate translator!"
 
-	echo "Enter your English sentence: "
+#Main function
+echo "Welcome to English to Pirate translator!"
+sentence=""
+Q_command="Q"
 
-	read sentence
+while true; do
+	if [ $1 -eq ""]; then
+		
+		echo "Enter your English sentence: "
+		echo "Enter Q to quit"
+		read sentence
 
-	P_sent=$sentence
-	
-	#trans to pirate
-	Trans_to_Pirate
+		if [ "$sentence" == "$Q_command" ]; then
+			break
+		fi
 
-	echo "Translated to Pirate:"
-	echo $P_sent
-fi
+		P_sent=$sentence
+		
+		#trans to pirate
+		Trans_to_Pirate
+
+		echo "Translated to Pirate:"
+		echo $P_sent
+		
+	fi
+done
+
+echo "Till we meet again, me lad!"
