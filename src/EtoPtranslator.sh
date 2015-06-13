@@ -76,14 +76,19 @@ echo "       Welcome to English to Pirate translator!"
 Print_Skull
 echo "            Enter Q to quit, C to clear"
 echo ""
+
+#Variables
 sentence=""
 Q_command="Q"
 C_command="C"
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
 
 while true; do
 	if [ $1 -eq ""]; then
 		
-		echo "Enter your English sentence: "
+		printf "${GREEN}Enter your English sentence: ${NC}"
 		read sentence
 
 		if [ "$sentence" == "$Q_command" ]; then
@@ -99,11 +104,12 @@ while true; do
 			#trans to pirate
 			Trans_to_Pirate
 
-			echo "Translated to Pirate:"
+			printf "${RED}Translated to Pirate: ${NC}"
 			echo $P_sent
 			echo "" 
 		fi
 	fi
 done
 
+echo ""
 echo "Till we set sail again, me lad!"
