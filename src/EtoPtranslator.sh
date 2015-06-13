@@ -86,7 +86,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 while true; do
-	if [ $1 -eq ""]; then
+	if [[ $1 == "" ]]; then
 		
 		printf "${GREEN}Enter your English sentence: ${NC}"
 		read sentence
@@ -108,6 +108,20 @@ while true; do
 			echo $P_sent
 			echo "" 
 		fi
+	else 
+		echo "Openin' yer file" 
+		echo ""
+
+		while IFS='' read -r line || [[ -n $line ]]; do
+			P_sent=$line
+			Trans_to_Pirate
+			echo $P_sent
+
+		done < "$1"
+		
+		echo ""
+		echo "Finished wit' yer file"
+		break;
 	fi
 done
 
