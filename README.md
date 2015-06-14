@@ -17,6 +17,8 @@ Execute the program by running the following in a terminal:
 
 The current working version of English-to-Pirate translator allows a user to enter a sentence in English and, in return, receive a Pirate translated version of their sentence.
 
+If the user runs English-to-Pirate translator with a parameter containing a path to a file, a translated copy of the file will be outputted.
+
 ##Bugs and Limitations
 
 * Translation of some words will erroneously be changes (i.e. `yesterday` will be changed to `ayeterday` because `yes` is found at the start of `yesterday`)
@@ -34,3 +36,5 @@ The current working version of English-to-Pirate translator allows a user to ent
 * Tidy the code so that adding to the Pirate dictionary can easily be done by anyone
 
 * Add to Pirate dictionary
+
+* Allow users to copy their translated text to a clipboard with a simple prompt (as opposed to highlighting the test and copying it)
