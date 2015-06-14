@@ -3,7 +3,7 @@
 function Trans_to_Pirate
 {
 	#basic pirate translations
-	P_sent=${P_sent//boy/lad}
+	P_sent=${P_sent//#"boy"%/lad}
 	P_sent=${P_sent//Boy/Lad}
 	P_sent=${P_sent//boys/lads}
 	P_sent=${P_sent//Boys/Lads}
@@ -95,6 +95,7 @@ while true; do
 			break
 		elif [ "$sentence" == "$C_command" ]; then
 			clear
+			echo "       Welcome to English to Pirate translator!"
 			Print_Skull
 			echo "            Enter Q to quit, C to clear"
 			echo ""
@@ -109,7 +110,7 @@ while true; do
 			echo "" 
 		fi
 	else 
-		echo "Openin' yer file" 
+		printf "${GREEN}Openin' yer file ${NC}" 
 		echo ""
 
 		while IFS='' read -r line || [[ -n $line ]]; do
@@ -120,7 +121,7 @@ while true; do
 		done < "$1"
 		
 		echo ""
-		echo "Finished wit' yer file"
+		printf "${RED}Finished wit' yer file ${NC}\n"
 		break;
 	fi
 done
