@@ -1,5 +1,5 @@
 # English-to-Pirate
-Simple and fun English to Pirate translator that uses bash shell scripting.
+Simple and fun in terminal English to Pirate translator that uses bash shell scripting.
 
 ##Download and run
 
@@ -38,3 +38,5 @@ If the user runs English-to-Pirate translator with a parameter containing a path
 * Add to Pirate dictionary
 
 * Allow users to copy their translated text to a clipboard with a simple prompt (as opposed to highlighting the test and copying it)
+
+* Add additional language translation support (i.e. English to Old English)
