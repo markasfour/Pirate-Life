@@ -3,51 +3,38 @@
 function Trans_to_Pirate
 {
 	#basic pirate translations
-	P_sent=${P_sent//#"boy"%/lad}
-	P_sent=${P_sent//Boy/Lad}
-	P_sent=${P_sent//boys/lads}
-	P_sent=${P_sent//Boys/Lads}
-
-	P_sent=${P_sent//friend/bucko}
-	P_sent=${P_sent//Friend/Bucko}
-
-	P_sent=${P_sent//friends/hearties}
-	P_sent=${P_sent//Friends/Hearties}
-	
-	P_sent=${P_sent//girl/lassy}
-	P_sent=${P_sent//Girl/Lassy}
-	P_sent=${P_sent//girls/lassies}
-	P_sent=${P_sent//Girls/Lassies}
-
-	P_sent=${P_sent//hello/ahoy}
-	P_sent=${P_sent//Hello/Ahoy}
-	
-	P_sent=${P_sent//hey/ahoy}
-	P_sent=${P_sent//Hey/Ahoy}
-	
-	P_sent=${P_sent//hi/ahoy}
-	P_sent=${P_sent//Hi/Ahoy}
-	
-	P_sent=${P_sent//my/me}
-	P_sent=${P_sent//My/Me}
-	
-	P_sent=${P_sent//stop/avast}
-	P_sent=${P_sent//Stop/Avast}
-
-	P_sent=${P_sent//want to/wanna}
-	P_sent=${P_sent//Want to/wanna}
-
-	P_sent=${P_sent//world/worl\'}
-	P_sent=${P_sent//World/Worl\'}
-	
-	P_sent=${P_sent//wow/shiver me timbers}
-	P_sent=${P_sent//Wow/Shiver me timbers}
-
-	P_sent=${P_sent//yes/aye}
-	P_sent=${P_sent//Yes/Aye aye}
-
-	P_sent=${P_sent//you/ye}
-	P_sent=${P_sent//You/Ye}
+	echo $P_sent | sed "s/boy/lad/g"\
+	| sed "s/Boy/Lad/g"\
+	| sed "s/boys/lads/g"\
+	| sed "s/Boys/Lads/g"\
+	| sed "s/friend/bucko/g"\
+	| sed "s/Friend/Bucko/g"\
+	| sed "s/friends/hearties/g"\
+	| sed "s/Friends/Hearties/g"\
+	| sed "s/girl/lassy/g"\
+	| sed "s/Girl/Lassy/g"\
+	| sed "s/girls/lassies/g"\
+	| sed "s/Girls/Lassies/g"\
+	| sed "s/hello/ahoy/g"\
+	| sed "s/Hello/Ahoy/g"\
+	| sed "s/hey/ahoy/g"\
+	| sed "s/Hey/Ahoy/g"\
+	| sed "s/hi/ahoy/g"\
+	| sed "s/Hi/Ahoy/g"\
+	| sed "s/my/me/g"\
+	| sed "s/My/Me/g"\
+	| sed "s/stop/avast/g"\
+	| sed "s/Stop/Avast/g"\
+	| sed "s/want to/wanna/g"\
+	| sed "s/Want to/Wanna/g"\
+	| sed "s/world/worl\'/g"\
+	| sed "s/World/worl\'/g"\
+	| sed "s/wow/shiver me timbers/g"\
+	| sed "s/Wow/Shiver me timbers/g"\
+	| sed "s/yes/aye/g"\
+	| sed "s/Yes/Aye aye/g"\
+	| sed "s/you/ye/g"\
+	| sed "s/You/Ye/g"
 }
 
 function Print_Skull
@@ -86,7 +73,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 while true; do
-	if [[ $1 == "" ]]; then
+	if [[ $1 == "" ]]; then #NO PARAMETERS INCLUDED WHEN RAN
 		
 		printf "${GREEN}Enter your English sentence: ${NC}"
 		read sentence
@@ -103,20 +90,21 @@ while true; do
 			P_sent=$sentence
 			
 			#trans to pirate
+			echo ""
+			printf "${RED}Translated to Pirate: ${NC}"
 			Trans_to_Pirate
 
-			printf "${RED}Translated to Pirate: ${NC}"
-			echo $P_sent
 			echo "" 
 		fi
-	else 
+	else #PARAMETERS INCLUDED WHEN RAN 
 		printf "${GREEN}Openin' yer file ${NC}" 
 		echo ""
+		echo ""
 
+		#READ FROM FILE
 		while IFS='' read -r line || [[ -n $line ]]; do
 			P_sent=$line
 			Trans_to_Pirate
-			echo $P_sent
 
 		done < "$1"
 		
