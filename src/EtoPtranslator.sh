@@ -93,7 +93,9 @@ C_command="C"
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
-
+WRITE="write"
+TMPFILE=$1
+TMPFILE+=".tmp" 
 while true; do
 	if [[ $1 == "" ]]; then #NO PARAMETERS INCLUDED WHEN RAN
 		
@@ -119,6 +121,20 @@ while true; do
 			echo "" 
 		fi
 	else #PARAMETERS INCLUDED WHEN RAN 
+		if [[ $2 == $WRITE ]]; then
+			printf "${RED}Be ye sure ye wanna overwrite yer file? (Y/N): ${NC}"
+			echo ""
+			read writebool
+			while [[ $writebool != "Y" && $writebool != "N" ]]; do
+				read writebool
+			done
+
+			if [[ $writebool == "N" ]]; then
+				echo "Ye scallywag"
+				echo ""
+			fi
+		fi
+		
 		printf "${GREEN}Openin' yer file ${NC}" 
 		echo ""
 		echo ""
@@ -126,15 +142,29 @@ while true; do
 		#READ FROM FILE
 		while IFS='' read -r line || [[ -n $line ]]; do
 			P_sent=$line
-			Trans_to_Pirate
+			if [[ $writebool == "Y" ]]; then
+				Trans_to_Pirate >> $TMPFILE 
+			else
+				Trans_to_Pirate
+			fi
 
 		done < "$1"
 		
+		if [[ $writebool == "Y" ]]; then
+			cat $TMPFILE > $1
+			rm $TMPFILE
+		fi
+
 		echo ""
 		printf "${RED}Finished wit' yer file ${NC}\n"
 		break;
 	fi
 done
 
-clear
+if [[ $1 == "" ]]; then
+	clear
+else
+	echo ""
+fi
+
 echo "Till we set sail again, me lad!"
