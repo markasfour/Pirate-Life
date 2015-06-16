@@ -15,7 +15,8 @@ Execute the program by running the following in a terminal:
 
 ##Features
 
-The current working version of English-to-Pirate translator with no parameters passed in allows a user to enter a sentence in English and, in return, receive a Pirate translated version of their sentence.
+The current working version of English-to-Pirate translator with no parameters passed in allows a user to enter a sentence in English and, in return, receive a Pirate translated version of their sentence. 
+The translated text is automatically copied to your general clipboard so you can paste the translation by using `right-click > paste` or by using `CTRL-V`.
 
 If the user runs English-to-Pirate translator with the first  parameter containing a path to a file, a translated copy of the file will be outputted.
 
