@@ -64,7 +64,8 @@ function Trans_to_Pirate
 	| sed "s/\<your\>/yer/g"\
 	| sed "s/\<Your\>/yer/g"\
 	| sed "s/ing\>/in\'/g"\
-	| sed "s/\!/\! ARRGH\!/g"
+	| sed "s/\!/\! ARRGH\!/g"\
+	| xclip -sel c -f
 }
 
 function Print_Skull
