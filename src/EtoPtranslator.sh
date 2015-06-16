@@ -87,24 +87,21 @@ echo "            Enter Q to quit, C to clear"
 echo ""
 
 #Variables
-sentence=""
-Q_command="Q"
-C_command="C"
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
-WRITE="write"
 TMPFILE=$1
 TMPFILE+=".tmp" 
+
 while true; do
 	if [[ $1 == "" ]]; then #NO PARAMETERS INCLUDED WHEN RAN
 		
 		printf "${GREEN}Enter your English sentence: ${NC}"
 		read sentence
 
-		if [ "$sentence" == "$Q_command" ]; then
+		if [[ $sentence == "Q" ]]; then
 			break
-		elif [ "$sentence" == "$C_command" ]; then
+		elif [[ $sentence == "C" ]]; then
 			clear
 			echo "       Welcome to English to Pirate translator!"
 			Print_Skull
@@ -113,7 +110,7 @@ while true; do
 		else
 			P_sent=$sentence
 			
-			#trans to pirate
+			#TRANSLATE
 			echo ""
 			printf "${RED}Translated to Pirate: ${NC}"
 			Trans_to_Pirate
@@ -121,10 +118,11 @@ while true; do
 			echo "" 
 		fi
 	else #PARAMETERS INCLUDED WHEN RAN 
-		if [[ $2 == $WRITE ]]; then
+		if [[ $2 == "write" ]]; then
 			printf "${RED}Be ye sure ye wanna overwrite yer file? (Y/N): ${NC}"
 			echo ""
 			read writebool
+			#VALIDATE OVERWRITE
 			while [[ $writebool != "Y" && $writebool != "N" ]]; do
 				read writebool
 			done
@@ -142,6 +140,8 @@ while true; do
 		#READ FROM FILE
 		while IFS='' read -r line || [[ -n $line ]]; do
 			P_sent=$line
+			
+			#OVERWRITE
 			if [[ $writebool == "Y" ]]; then
 				Trans_to_Pirate >> $TMPFILE 
 			else
@@ -150,6 +150,7 @@ while true; do
 
 		done < "$1"
 		
+		#OVERWRITE CONT
 		if [[ $writebool == "Y" ]]; then
 			cat $TMPFILE > $1
 			rm $TMPFILE
