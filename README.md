@@ -15,21 +15,17 @@ Execute the program by running the following in a terminal:
 
 ##Features
 
-The current working version of English-to-Pirate translator allows a user to enter a sentence in English and, in return, receive a Pirate translated version of their sentence.
+The current working version of English-to-Pirate translator with no parameters passed in allows a user to enter a sentence in English and, in return, receive a Pirate translated version of their sentence.
 
-If the user runs English-to-Pirate translator with a parameter containing a path to a file, a translated copy of the file will be outputted.
+If the user runs English-to-Pirate translator with the first  parameter containing a path to a file, a translated copy of the file will be outputted.
+
+If the user runs English-to-Pirate translator with the second parameter being `write`, the file provided in the first parameter will be overwritten with the translated copy. 
 
 ##Bugs and Limitations
-
-* Translation of some words will erroneously be changes (i.e. `yesterday` will be changed to `ayeterday` because `yes` is found at the start of `yesterday`)
 
 * Only one sentence can be entered at a time per execution of the program
 
 ##Future Plans
-
-* Allow users to enter multiple queries without terminating the program
-
-* Allow users to pass in a file to be translated and give the option of either overwriting the file or to simply echo the translated file
 
 * Make a clean user interface
 
