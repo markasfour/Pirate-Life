@@ -29,6 +29,8 @@ function Trans_to_Pirate
 	| sed "s/\<Hey\>/Ahoy/g"\
 	| sed "s/\<hi\>/ahoy/g"\
 	| sed "s/\<Hi\>/Ahoy/g"\
+	| sed "s/\<idiot\>/squiffy/g"\
+	| sed "s/\<Idiot\>/Squiffy/g"\
 	| sed "s/\<is\>/be/g"\
 	| sed "s/\<Is\>/Be/g"\
 	| sed "s/\<my\>/me/g"\
@@ -37,8 +39,14 @@ function Trans_to_Pirate
 	| sed "s/\<Of\>/O\'/g"\
 	| sed "s/\<prize\>/booty/g"\
 	| sed "s/\<Prize\>/Booty/g"\
+	| sed "s/\<quickly\>/smartly/g"\
+	| sed "s/\<Quickly\>/Smartly/g"\
+	| sed "s/\<sexy\>/saucy/g"\
+	| sed "s/\<Sexy\>/Saucy/g"\
 	| sed "s/\<stop\>/avast/g"\
 	| sed "s/\<Stop\>/Avast/g"\
+	| sed "s/\<there\>/thar/g"\
+	| sed "s/\<There\>/Thar/g"\
 	| sed "s/\<today\>/this day/g"\
 	| sed "s/\<Today\>/This day/g"\
 	| sed "s/\<treasure\>/booty/g"\
