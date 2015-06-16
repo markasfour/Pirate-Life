@@ -3,10 +3,18 @@
 function Trans_to_Pirate
 {
 	#basic pirate translations
-	echo $P_sent | sed "s/\<boy\>/lad/g"\
+	echo $P_sent | sed "s/\<and\>/\'n/g"\
+	| sed "s/\<And\>/i\'N/g"\
+	| sed "s/\<are\>/be/g"\
+	| sed "s/\<Are\>/Be/g"\
+	| sed "s/\<boss\>/captain/g"\
+	| sed "s/\<Boss\>/Captain/g"\
+	| sed "s/\<boy\>/lad/g"\
 	| sed "s/\<Boy\>/Lad/g"\
 	| sed "s/\<boys\>/lads/g"\
 	| sed "s/\<Boys\>/Lads/g"\
+	| sed "s/\<for\>/fer/g"\
+	| sed "s/\<For\>/Fer/g"\
 	| sed "s/\<friend\>/bucko/g"\
 	| sed "s/\<Friend\>/Bucko/g"\
 	| sed "s/\<friends\>/hearties/g"\
@@ -21,10 +29,20 @@ function Trans_to_Pirate
 	| sed "s/\<Hey\>/Ahoy/g"\
 	| sed "s/\<hi\>/ahoy/g"\
 	| sed "s/\<Hi\>/Ahoy/g"\
+	| sed "s/\<is\>/be/g"\
+	| sed "s/\<Is\>/Be/g"\
 	| sed "s/\<my\>/me/g"\
 	| sed "s/\<My\>/Me/g"\
+	| sed "s/\<of\>/o\'/g"\
+	| sed "s/\<Of\>/O\'/g"\
+	| sed "s/\<prize\>/booty/g"\
+	| sed "s/\<Prize\>/Booty/g"\
 	| sed "s/\<stop\>/avast/g"\
 	| sed "s/\<Stop\>/Avast/g"\
+	| sed "s/\<today\>/this day/g"\
+	| sed "s/\<Today\>/This day/g"\
+	| sed "s/\<treasure\>/booty/g"\
+	| sed "s/\<Treasure\>/Booty/g"\
 	| sed "s/\<want to\>/wanna/g"\
 	| sed "s/\<Want to\>/Wanna/g"\
 	| sed "s/\<world\>/worl\'/g"\
@@ -34,7 +52,11 @@ function Trans_to_Pirate
 	| sed "s/\<yes\>/aye/g"\
 	| sed "s/\<Yes\>/Aye aye/g"\
 	| sed "s/\<you\>/ye/g"\
-	| sed "s/\<You\>/Ye/g"
+	| sed "s/\<You\>/Ye/g"\
+	| sed "s/\<your\>/yer/g"\
+	| sed "s/\<Your\>/yer/g"\
+	| sed "s/ing\>/in\'/g"\
+	| sed "s/\!/\! ARRGH\!/g"
 }
 
 function Print_Skull
@@ -114,5 +136,5 @@ while true; do
 	fi
 done
 
-echo ""
+clear
 echo "Till we set sail again, me lad!"
