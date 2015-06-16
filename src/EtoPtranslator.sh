@@ -3,38 +3,38 @@
 function Trans_to_Pirate
 {
 	#basic pirate translations
-	echo $P_sent | sed "s/boy/lad/g"\
-	| sed "s/Boy/Lad/g"\
-	| sed "s/boys/lads/g"\
-	| sed "s/Boys/Lads/g"\
-	| sed "s/friend/bucko/g"\
-	| sed "s/Friend/Bucko/g"\
-	| sed "s/friends/hearties/g"\
-	| sed "s/Friends/Hearties/g"\
-	| sed "s/girl/lassy/g"\
-	| sed "s/Girl/Lassy/g"\
-	| sed "s/girls/lassies/g"\
-	| sed "s/Girls/Lassies/g"\
-	| sed "s/hello/ahoy/g"\
-	| sed "s/Hello/Ahoy/g"\
-	| sed "s/hey/ahoy/g"\
-	| sed "s/Hey/Ahoy/g"\
-	| sed "s/hi/ahoy/g"\
-	| sed "s/Hi/Ahoy/g"\
-	| sed "s/my/me/g"\
-	| sed "s/My/Me/g"\
-	| sed "s/stop/avast/g"\
-	| sed "s/Stop/Avast/g"\
-	| sed "s/want to/wanna/g"\
-	| sed "s/Want to/Wanna/g"\
-	| sed "s/world/worl\'/g"\
-	| sed "s/World/worl\'/g"\
-	| sed "s/wow/shiver me timbers/g"\
-	| sed "s/Wow/Shiver me timbers/g"\
-	| sed "s/yes/aye/g"\
-	| sed "s/Yes/Aye aye/g"\
-	| sed "s/you/ye/g"\
-	| sed "s/You/Ye/g"
+	echo $P_sent | sed "s/\<boy\>/lad/g"\
+	| sed "s/\<Boy\>/Lad/g"\
+	| sed "s/\<boys\>/lads/g"\
+	| sed "s/\<Boys\>/Lads/g"\
+	| sed "s/\<friend\>/bucko/g"\
+	| sed "s/\<Friend\>/Bucko/g"\
+	| sed "s/\<friends\>/hearties/g"\
+	| sed "s/\<Friends\>/Hearties/g"\
+	| sed "s/\<girl\>/lassy/g"\
+	| sed "s/\<Girl\>/Lassy/g"\
+	| sed "s/\<girls\>/lassies/g"\
+	| sed "s/\<Girls\>/Lassies/g"\
+	| sed "s/\<hello\>/ahoy/g"\
+	| sed "s/\<Hello\>/Ahoy/g"\
+	| sed "s/\<hey\>/ahoy/g"\
+	| sed "s/\<Hey\>/Ahoy/g"\
+	| sed "s/\<hi\>/ahoy/g"\
+	| sed "s/\<Hi\>/Ahoy/g"\
+	| sed "s/\<my\>/me/g"\
+	| sed "s/\<My\>/Me/g"\
+	| sed "s/\<stop\>/avast/g"\
+	| sed "s/\<Stop\>/Avast/g"\
+	| sed "s/\<want to\>/wanna/g"\
+	| sed "s/\<Want to\>/Wanna/g"\
+	| sed "s/\<world\>/worl\'/g"\
+	| sed "s/\<World\>/worl\'/g"\
+	| sed "s/\<wow\>/shiver me timbers/g"\
+	| sed "s/\<Wow\>/Shiver me timbers/g"\
+	| sed "s/\<yes\>/aye/g"\
+	| sed "s/\<Yes\>/Aye aye/g"\
+	| sed "s/\<you\>/ye/g"\
+	| sed "s/\<You\>/Ye/g"
 }
 
 function Print_Skull
