@@ -25,6 +25,8 @@ function Trans_to_Pirate
 	| sed "s/\<Boys\>/Lads/g"\
 	| sed "s/\<but\>/bu\'/g"\
 	| sed "s/\<But\>/Bu\'/g"\
+	| sed "s/\<different\>/di\'rent/g"\
+	| sed "s/\<Different\>/Di\'rent/g"\
 	| sed "s/\<drink\>/swig/g"\
 	| sed "s/\<Drink\>/Swig/g"\
 	| sed "s/\<drinks\>/swigs/g"\
@@ -53,6 +55,8 @@ function Trans_to_Pirate
 	| sed "s/\<Girl\>/Lassy/g"\
 	| sed "s/\<girls\>/lassies/g"\
 	| sed "s/\<Girls\>/Lassies/g"\
+	| sed "s/\<government\>/law making scalleywags/g"\
+	| sed "s/\<government\>/Law making scalleywags/g"\
 	| sed "s/\<hell\>/Davy Jone's Locker/g"\
 	| sed "s/\<Hell\>/Davy Jone's Locker/g"\
 	| sed "s/\<hello\>/ahoy/g"\
@@ -67,6 +71,14 @@ function Trans_to_Pirate
 	| sed "s/\<Is\>/Be/g"\
 	| sed "s/\<just\>/jus\'/g"\
 	| sed "s/\<Just\>/Jus\'/g"\
+	| sed "s/\<knew\>/savvied/g"\
+	| sed "s/\<Knew\>/Savvied/g"\
+	| sed "s/\<know\>/savvy/g"\
+	| sed "s/\<Know\>/Savvy/g"\
+	| sed "s/\<knowing\>/savvying/g"\
+	| sed "s/\<Knowing\>/Savvying/g"\
+	| sed "s/\<knows\>/savvies/g"\
+	| sed "s/\<Knows\>/Savvies/g"\
 	| sed "s/\<little\>/wee/g"\
 	| sed "s/\<Little\>/Wee/g"\
 	| sed "s/\<man\>/buccaneer/g"\
@@ -87,6 +99,8 @@ function Trans_to_Pirate
 	| sed "s/\<Others\>/Ot\'ers/g"\
 	| sed "s/\<person\>/scalleywag/g"\
 	| sed "s/\<Person\>/Scalleywag/g"\
+	| sed "s/\<people\>/scalleywags/g"\
+	| sed "s/\<People\>/Scalleywags/g"\
 	| sed "s/\<prize\>/booty/g"\
 	| sed "s/\<Prize\>/Booty/g"\
 	| sed "s/\<quickly\>/smartly/g"\
@@ -115,6 +129,8 @@ function Trans_to_Pirate
 	| sed "s/\<Treasure\>/Booty/g"\
 	| sed "s/\<understand\>/savvy/g"\
 	| sed "s/\<Understand\>/Savvy/g"\
+	| sed "s/\<until\>/\'til/g"\
+	| sed "s/\<Until\>/\'Til/g"\
 	| sed "s/\<want to\>/wanna/g"\
 	| sed "s/\<Want to\>/Wanna/g"\
 	| sed "s/\<what\>/wha\'/g"\
@@ -129,6 +145,8 @@ function Trans_to_Pirate
 	| sed "s/\<Wood\>/Lumber/g"\
 	| sed "s/\<world\>/worl\'/g"\
 	| sed "s/\<World\>/worl\'/g"\
+	| sed "s/\<would\>/wou\'d/g"\
+	| sed "s/\<Would\>/Wou\'d/g"\
 	| sed "s/\<wow\>/shiver me timbers/g"\
 	| sed "s/\<Wow\>/Shiver me timbers/g"\
 	| sed "s/\<yes\>/aye/g"\
@@ -137,6 +155,8 @@ function Trans_to_Pirate
 	| sed "s/\<You\>/Ye/g"\
 	| sed "s/\<your\>/yer/g"\
 	| sed "s/\<Your\>/yer/g"\
+	| sed "s/ever/e\'r/g"\
+	| sed "s/\>Ever/E\'r/g"\
 	| sed "s/ing\>/in\'/g"\
 	| sed "s/ld\>/l\'/g"\
 	| sed "s/nd\>/n\'/g"\
