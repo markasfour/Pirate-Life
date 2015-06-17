@@ -5,8 +5,8 @@ function Trans_to_Pirate
 	#basic pirate translations
 	echo $P_sent | sed "s/\<allow\>/let be/g"\
 	| sed "s/\<Allow\>/Let be/g"\
-	| sed "s/\<allowed\>/let be/g"\
-	| sed "s/\<Allowed\>/Let be/g"\
+	| sed "s/\<allowed\>/freed/g"\
+	| sed "s/\<Allowed\>/Freed/g"\
 	| sed "s/\<allowing\>/be letting/g"\
 	| sed "s/\<Allowing\>/Be letting/g"\
 	| sed "s/\<allows\>/lets/g"\
