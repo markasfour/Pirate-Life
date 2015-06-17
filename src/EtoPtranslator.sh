@@ -23,6 +23,8 @@ function Trans_to_Pirate
 	| sed "s/\<Boy\>/Lad/g"\
 	| sed "s/\<boys\>/lads/g"\
 	| sed "s/\<Boys\>/Lads/g"\
+	| sed "s/\<but\>/bu\'/g"\
+	| sed "s/\<But\>/Bu\'/g"\
 	| sed "s/\<drink\>/swig/g"\
 	| sed "s/\<Drink\>/Swig/g"\
 	| sed "s/\<drinks\>/swigs/g"\
@@ -63,6 +65,8 @@ function Trans_to_Pirate
 	| sed "s/\<Idiot\>/Squiffy/g"\
 	| sed "s/\<is\>/be/g"\
 	| sed "s/\<Is\>/Be/g"\
+	| sed "s/\<just\>/jus\'/g"\
+	| sed "s/\<Just\>/Jus\'/g"\
 	| sed "s/\<little\>/wee/g"\
 	| sed "s/\<Little\>/Wee/g"\
 	| sed "s/\<man\>/buccaneer/g"\
@@ -77,6 +81,12 @@ function Trans_to_Pirate
 	| sed "s/\<Ok\>/Savvy/g"\
 	| sed "s/\<okay\>/savvy/g"\
 	| sed "s/\<Okay\>/Savvy/g"\
+	| sed "s/\<other\>/ot\'er/g"\
+	| sed "s/\<Other\>/Ot\'er/g"\
+	| sed "s/\<others\>/ot\'ers/g"\
+	| sed "s/\<Others\>/Ot\'ers/g"\
+	| sed "s/\<person\>/scalleywag/g"\
+	| sed "s/\<Person\>/Scalleywag/g"\
 	| sed "s/\<prize\>/booty/g"\
 	| sed "s/\<Prize\>/Booty/g"\
 	| sed "s/\<quickly\>/smartly/g"\
@@ -84,10 +94,19 @@ function Trans_to_Pirate
 	| sed "s/\<small\>/wee/g"\
 	| sed "s/\<Small\>/Wee/g"\
 	| sed "s/\<sexy\>/saucy/g"\
+	| sed "s/\<Sexy\>/Saucy/g"\
 	| sed "s/\<speak\>/shout/g"\
 	| sed "s/\<Speak\>/Shout/g"\
 	| sed "s/\<stop\>/avast/g"\
 	| sed "s/\<Stop\>/Avast/g"\
+	| sed "s/\<talk\>/speak/g"\
+	| sed "s/\<Talk\>/Speak/g"\
+	| sed "s/\<talked\>/spoked/g"\
+	| sed "s/\<Talked\>/Spoked/g"\
+	| sed "s/\<talking\>/speaking/g"\
+	| sed "s/\<Talking\>/Speaking/g"\
+	| sed "s/\<talks\>/speaks/g"\
+	| sed "s/\<Talks\>/Speaks/g"\
 	| sed "s/\<there\>/thar/g"\
 	| sed "s/\<There\>/Thar/g"\
 	| sed "s/\<today\>/this day/g"\
@@ -98,6 +117,8 @@ function Trans_to_Pirate
 	| sed "s/\<Understand\>/Savvy/g"\
 	| sed "s/\<want to\>/wanna/g"\
 	| sed "s/\<Want to\>/Wanna/g"\
+	| sed "s/\<what\>/wha\'/g"\
+	| sed "s/\<What\>/Wha\'/g"\
 	| sed "s/\<with\>/wit\'/g"\
 	| sed "s/\<With\>/Wit\'/g"\
 	| sed "s/\<woman\>/wench/g"\
