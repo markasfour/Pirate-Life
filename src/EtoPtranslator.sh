@@ -3,16 +3,44 @@
 function Trans_to_Pirate
 {
 	#basic pirate translations
-	echo $P_sent | sed "s/\<and\>/\'n/g"\
+	echo $P_sent | sed "s/\<allow\>/let be/g"\
+	| sed "s/\<Allow\>/Let be/g"\
+	| sed "s/\<allowed\>/let be/g"\
+	| sed "s/\<Allowed\>/Let be/g"\
+	| sed "s/\<allowing\>/be letting/g"\
+	| sed "s/\<Allowing\>/Be letting/g"\
+	| sed "s/\<allows\>/lets/g"\
+	| sed "s/\<Allows\>/Lets/g"\
+	| sed "s/\<and\>/\'n/g"\
 	| sed "s/\<And\>/i\'N/g"\
 	| sed "s/\<are\>/be/g"\
 	| sed "s/\<Are\>/Be/g"\
+	| sed "s/\<ate\>/swallowed/g"\
+	| sed "s/\<Ate\>/Swallowed/g"\
 	| sed "s/\<boss\>/captain/g"\
 	| sed "s/\<Boss\>/Captain/g"\
 	| sed "s/\<boy\>/lad/g"\
 	| sed "s/\<Boy\>/Lad/g"\
 	| sed "s/\<boys\>/lads/g"\
 	| sed "s/\<Boys\>/Lads/g"\
+	| sed "s/\<drink\>/swig/g"\
+	| sed "s/\<Drink\>/Swig/g"\
+	| sed "s/\<drinks\>/swigs/g"\
+	| sed "s/\<Drinks\>/Swigs/g"\
+	| sed "s/\<drive\>/sail/g"\
+	| sed "s/\<Drive\>/Sail/g"\
+	| sed "s/\<driving\>/sailing/g"\
+	| sed "s/\<Driving\>/Sailing/g"\
+	| sed "s/\<drives\>/floats/g"\
+	| sed "s/\<Drives\>/Floats/g"\
+	| sed "s/\<drove\>/sailed/g"\
+	| sed "s/\<Drove\>/Sailed/g"\
+	| sed "s/\<eat\>/munch/g"\
+	| sed "s/\<Eat\>/Munch/g"\
+	| sed "s/\<eating\>/munching/g"\
+	| sed "s/\<Eating\>/Munching/g"\
+	| sed "s/\<eats\>/munches/g"\
+	| sed "s/\<Eats\>/Munches/g"\
 	| sed "s/\<for\>/fer/g"\
 	| sed "s/\<For\>/Fer/g"\
 	| sed "s/\<friend\>/bucko/g"\
@@ -23,6 +51,8 @@ function Trans_to_Pirate
 	| sed "s/\<Girl\>/Lassy/g"\
 	| sed "s/\<girls\>/lassies/g"\
 	| sed "s/\<Girls\>/Lassies/g"\
+	| sed "s/\<hell\>/Davy Jone's Locker/g"\
+	| sed "s/\<Hell\>/Davy Jone's Locker/g"\
 	| sed "s/\<hello\>/ahoy/g"\
 	| sed "s/\<Hello\>/Ahoy/g"\
 	| sed "s/\<hey\>/ahoy/g"\
@@ -33,16 +63,29 @@ function Trans_to_Pirate
 	| sed "s/\<Idiot\>/Squiffy/g"\
 	| sed "s/\<is\>/be/g"\
 	| sed "s/\<Is\>/Be/g"\
+	| sed "s/\<little\>/wee/g"\
+	| sed "s/\<Little\>/Wee/g"\
+	| sed "s/\<man\>/buccaneer/g"\
+	| sed "s/\<Man\>/Buccaneer/g"\
+	| sed "s/\<men\>/crew/g"\
+	| sed "s/\<Men\>/Crew/g"\
 	| sed "s/\<my\>/me/g"\
 	| sed "s/\<My\>/Me/g"\
 	| sed "s/\<of\>/o\'/g"\
 	| sed "s/\<Of\>/O\'/g"\
+	| sed "s/\<ok\>/savvy/g"\
+	| sed "s/\<Ok\>/Savvy/g"\
+	| sed "s/\<okay\>/savvy/g"\
+	| sed "s/\<Okay\>/Savvy/g"\
 	| sed "s/\<prize\>/booty/g"\
 	| sed "s/\<Prize\>/Booty/g"\
 	| sed "s/\<quickly\>/smartly/g"\
 	| sed "s/\<Quickly\>/Smartly/g"\
+	| sed "s/\<small\>/wee/g"\
+	| sed "s/\<Small\>/Wee/g"\
 	| sed "s/\<sexy\>/saucy/g"\
-	| sed "s/\<Sexy\>/Saucy/g"\
+	| sed "s/\<speak\>/shout/g"\
+	| sed "s/\<Speak\>/Shout/g"\
 	| sed "s/\<stop\>/avast/g"\
 	| sed "s/\<Stop\>/Avast/g"\
 	| sed "s/\<there\>/thar/g"\
@@ -51,8 +94,18 @@ function Trans_to_Pirate
 	| sed "s/\<Today\>/This day/g"\
 	| sed "s/\<treasure\>/booty/g"\
 	| sed "s/\<Treasure\>/Booty/g"\
+	| sed "s/\<understand\>/savvy/g"\
+	| sed "s/\<Understand\>/Savvy/g"\
 	| sed "s/\<want to\>/wanna/g"\
 	| sed "s/\<Want to\>/Wanna/g"\
+	| sed "s/\<with\>/wit\'/g"\
+	| sed "s/\<With\>/Wit\'/g"\
+	| sed "s/\<woman\>/wench/g"\
+	| sed "s/\<Woman\>/Wench/g"\
+	| sed "s/\<women\>/beauties/g"\
+	| sed "s/\<Women\>/Beauties/g"\
+	| sed "s/\<wood\>/lumber/g"\
+	| sed "s/\<Wood\>/Lumber/g"\
 	| sed "s/\<world\>/worl\'/g"\
 	| sed "s/\<World\>/worl\'/g"\
 	| sed "s/\<wow\>/shiver me timbers/g"\
@@ -64,6 +117,8 @@ function Trans_to_Pirate
 	| sed "s/\<your\>/yer/g"\
 	| sed "s/\<Your\>/yer/g"\
 	| sed "s/ing\>/in\'/g"\
+	| sed "s/ld\>/l\'/g"\
+	| sed "s/nd\>/n\'/g"\
 	| sed "s/\!/\! ARRGH\!/g"\
 	| xclip -sel c -f
 }
@@ -83,7 +138,7 @@ function Print_Skull
 	echo "      _     _".=\"_.=\"\\ "         "/\"=._\"=._"     "_
 	echo "     "\( \\_.=\"_.=\""     "\`--------\`"     "\"=._\"=._/ \)
 	echo "      "\> _.=\""                            "\"=._ \<
-	echo "     "\(_/"                                    "\\_\)
+	echo "     "\(_/"    Enter Q to quit, C to clear     "\\_\)
 	echo "" 
 }
 
@@ -92,8 +147,6 @@ function Print_Skull
 clear
 echo "       Welcome to English to Pirate translator!"
 Print_Skull
-echo "            Enter Q to quit, C to clear"
-echo ""
 
 #Variables
 GREEN='\033[0;32m'
@@ -114,11 +167,8 @@ while true; do
 			clear
 			echo "       Welcome to English to Pirate translator!"
 			Print_Skull
-			echo "            Enter Q to quit, C to clear"
-			echo ""
 		else
 			P_sent=$sentence
-			
 			#TRANSLATE
 			echo ""
 			printf "${RED}Translated to Pirate: ${NC}"
