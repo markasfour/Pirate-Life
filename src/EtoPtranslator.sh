@@ -69,8 +69,8 @@ function Trans_to_Pirate
 	| sed "s/\<Idiot\>/Squiffy/g"\
 	| sed "s/\<is\>/be/g"\
 	| sed "s/\<Is\>/Be/g"\
-	| sed "s/\<isn\'t\>/ain\'t/g"\
-	| sed "s/\<Isn\'t\>/Ain\'t/g"\
+	| sed "s/\<isn't\>/ain\'t/g"\
+	| sed "s/\<Isn't\>/Ain\'t/g"\
 	| sed "s/\<is not\>/ain\'t/g"\
 	| sed "s/\<Is not\>/Ain\'t/g"\
 	| sed "s/\<just\>/jus\'/g"\
