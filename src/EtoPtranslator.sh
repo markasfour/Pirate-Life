@@ -69,6 +69,10 @@ function Trans_to_Pirate
 	| sed "s/\<Idiot\>/Squiffy/g"\
 	| sed "s/\<is\>/be/g"\
 	| sed "s/\<Is\>/Be/g"\
+	| sed "s/\<isn\'t\>/ain\'t/g"\
+	| sed "s/\<Isn\'t\>/Ain\'t/g"\
+	| sed "s/\<is not\>/ain\'t/g"\
+	| sed "s/\<Is not\>/Ain\'t/g"\
 	| sed "s/\<just\>/jus\'/g"\
 	| sed "s/\<Just\>/Jus\'/g"\
 	| sed "s/\<knew\>/savvied/g"\
@@ -166,6 +170,7 @@ function Trans_to_Pirate
 
 function Print_Skull
 {
+	echo "       Welcome to English to Pirate translator!"
 	echo "                       "______
 	echo "                    ".-\""     " \"-.
 	echo "                   "/"           " \\
@@ -179,14 +184,146 @@ function Print_Skull
 	echo "      _     _".=\"_.=\"\\ "         "/\"=._\"=._"     "_
 	echo "     "\( \\_.=\"_.=\""     "\`--------\`"     "\"=._\"=._/ \)
 	echo "      "\> _.=\""                            "\"=._ \<
-	echo "     "\(_/"    Enter Q to quit, C to clear     "\\_\)
+	echo "     "\(_/"                                    "\\_\)
 	echo "" 
 }
 
+function Menu
+{
+	clear
+	Print_Skull
+	printf "                        ${GREEN}MENU${NC}\n"
+	echo "     ------------------------------------------"
+	echo "     |     S to translate inputed sentences   |"
+	echo "     ------------------------------------------"
+	echo "     |          F to translate a file         |"
+	echo "     ------------------------------------------"
+	echo "     |               Q to quit                |"
+	echo "     ------------------------------------------"
+	echo ""
+	
+	MenuInput=""
+	while [[ $MenuInput != "S" && $MenuInput != "F" && $MenuInput != Q ]]; do
+		read MenuInput
+	done
+
+	if [[ $MenuInput == "S" ]]; then
+		clear
+		Print_Skull
+		echo "       Enter Q to return to menu, C to clear"
+		echo ""
+		SentenceTrans
+	elif [[ $MenuInput == "F" ]]; then
+		clear
+		Print_Skull
+		echo "Enter the path to yer file, Q to return to menu: "
+		read file
+		if [[ $file == "Q" ]]; then
+			Menu
+		fi
+		From_Start=0
+		FileTrans $file
+	elif [[ $MenuInput == "Q" ]]; then
+		clear
+		echo "Till we set sail again, me lad."
+		exit 0
+	fi
+}
+
+function SentenceTrans
+{
+	sentence=""
+	while [[ $sentence != "Q" ]]; do
+		printf "${GREEN}Enter your English sentence: ${NC}"
+		read sentence
+
+		if [[ $sentence == "Q" ]]; then
+			Menu
+		elif [[ $sentence == "C" ]]; then
+			clear
+			Print_Skull
+			echo "       Enter Q to return to menu, C to clear"
+			echo ""
+		else
+			P_sent=$sentence
+			#TRANSLATE
+			echo ""
+			printf "${RED}Translated to Pirate: ${NC}"
+			Trans_to_Pirate
+
+			echo "" 
+		fi
+	done
+}
+
+function FileTrans
+{
+	if [[ $2 == "write" ]]; then
+		printf "${RED}Be ye sure ye wanna overwrite yer file? (Y/N): ${NC}"
+		echo ""
+		read writebool
+		#VALIDATE OVERWRITE
+		while [[ $writebool != "Y" && $writebool != "N" ]]; do
+			read writebool
+		done
+
+		if [[ $writebool == "N" ]]; then
+			echo "Ye scallywag"
+			echo ""
+		fi
+	fi
+		
+	printf "${GREEN}Openin' yer file ${NC}" 
+	echo ""
+	echo ""
+
+	#READ FROM FILE
+	while IFS='' read -r line || [[ -n $line ]]; do
+		P_sent=$line
+			
+		#OVERWRITE
+		if [[ $writebool == "Y" ]]; then
+			Trans_to_Pirate >> $TMPFILE 
+		else
+			Trans_to_Pirate
+		fi
+	done < "$1"
+		
+	#OVERWRITE CONT
+	if [[ $writebool == "Y" ]]; then
+		cat $TMPFILE > $1
+		rm $TMPFILE
+	fi
+
+	echo ""
+	printf "${RED}Finished wit' yer file ${NC}\n"
+	if [[ $From_Start == 0 ]]; then
+		echo "Translate another file? (Y/N) "
+		Another_file=""
+		while [[ $Another_file != "Y" && $Another_file != "N" ]]; do
+			read Another_file
+		done
+
+		if [[ $Another_file == "Y" ]]; then
+			clear
+			Print_Skull
+			echo "Enter the path to yer file, Q to return to menu: "
+			read file
+			if [[ $file == "Q" ]]; then
+				Menu
+			fi
+			From_Start=0
+			FileTrans $file
+		else
+			Menu
+		fi
+	else
+		exit 0
+	fi
+}
 
 #Main function
 clear
-echo "       Welcome to English to Pirate translator!"
 Print_Skull
 
 #Variables
@@ -198,67 +335,12 @@ TMPFILE+=".tmp"
 
 while true; do
 	if [[ $1 == "" ]]; then #NO PARAMETERS INCLUDED WHEN RAN
-		
-		printf "${GREEN}Enter your English sentence: ${NC}"
-		read sentence
+		Menu	
 
-		if [[ $sentence == "Q" ]]; then
-			break
-		elif [[ $sentence == "C" ]]; then
-			clear
-			echo "       Welcome to English to Pirate translator!"
-			Print_Skull
-		else
-			P_sent=$sentence
-			#TRANSLATE
-			echo ""
-			printf "${RED}Translated to Pirate: ${NC}"
-			Trans_to_Pirate
-
-			echo "" 
-		fi
 	else #PARAMETERS INCLUDED WHEN RAN 
-		if [[ $2 == "write" ]]; then
-			printf "${RED}Be ye sure ye wanna overwrite yer file? (Y/N): ${NC}"
-			echo ""
-			read writebool
-			#VALIDATE OVERWRITE
-			while [[ $writebool != "Y" && $writebool != "N" ]]; do
-				read writebool
-			done
-
-			if [[ $writebool == "N" ]]; then
-				echo "Ye scallywag"
-				echo ""
-			fi
-		fi
-		
-		printf "${GREEN}Openin' yer file ${NC}" 
-		echo ""
-		echo ""
-
-		#READ FROM FILE
-		while IFS='' read -r line || [[ -n $line ]]; do
-			P_sent=$line
-			
-			#OVERWRITE
-			if [[ $writebool == "Y" ]]; then
-				Trans_to_Pirate >> $TMPFILE 
-			else
-				Trans_to_Pirate
-			fi
-
-		done < "$1"
-		
-		#OVERWRITE CONT
-		if [[ $writebool == "Y" ]]; then
-			cat $TMPFILE > $1
-			rm $TMPFILE
-		fi
-
-		echo ""
-		printf "${RED}Finished wit' yer file ${NC}\n"
-		break;
+		echo $1
+		From_Start=1
+		FileTrans $1
 	fi
 done
 
