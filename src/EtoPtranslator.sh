@@ -196,7 +196,7 @@ function Menu
 	echo "     ------------------------------------------"
 	echo "     |     S to translate inputed sentences   |"
 	echo "     ------------------------------------------"
-	echo "     |          F to translate a file         |"
+	echo "     |F to translate a file (to overwrite, -w)|"
 	echo "     ------------------------------------------"
 	echo "     |               Q to quit                |"
 	echo "     ------------------------------------------"
@@ -258,7 +258,7 @@ function SentenceTrans
 
 function FileTrans
 {
-	if [[ $2 == "write" ]]; then
+	if [[ $2 == "-w" ]]; then
 		printf "${RED}Be ye sure ye wanna overwrite yer file? (Y/N): ${NC}"
 		echo ""
 		read writebool
@@ -338,9 +338,8 @@ while true; do
 		Menu	
 
 	else #PARAMETERS INCLUDED WHEN RAN 
-		echo $1
 		From_Start=1
-		FileTrans $1
+		FileTrans $1 $2
 	fi
 done
 
