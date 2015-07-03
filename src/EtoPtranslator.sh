@@ -196,6 +196,8 @@ function Menu
 	echo "     ------------------------------------------"
 	echo "     |     S to translate inputed sentences   |"
 	echo "     ------------------------------------------"
+	echo "     |          I to generate an insult       |"
+	echo "     ------------------------------------------"
 	echo "     |F to translate a file (to overwrite, -w)|"
 	echo "     ------------------------------------------"
 	echo "     |               Q to quit                |"
@@ -203,7 +205,7 @@ function Menu
 	echo ""
 	
 	MenuInput=""
-	while [[ $MenuInput != "S" && $MenuInput != "F" && $MenuInput != Q ]]; do
+	while [[ $MenuInput != "S" && $MenuInput != "F" && $MenuInput != "Q" && $MenuInput != "I" ]]; do
 		read MenuInput
 	done
 
@@ -223,6 +225,11 @@ function Menu
 		fi
 		From_Start=0
 		FileTrans $file
+	elif [[ $MenuInput == "I" ]]; then
+		clear
+		Print_Skull
+		echo ""
+		GenerateInsult
 	elif [[ $MenuInput == "Q" ]]; then
 		clear
 		echo "Till we set sail again, me lad."
@@ -322,9 +329,29 @@ function FileTrans
 	fi
 }
 
+function GenerateInsult 
+{
+	if [ ! -d "./bin" ]; then
+		make
+	fi
+
+	bin/insults.o | xclip -sel c -f
+	printf "${RED}Do ye want another? (Y/N)${NC}"
+	echo ""
+	insultprompt=""
+	while [[ $insultprompt != "Y" && $insultprompt != "N" ]]; do
+		read insultprompt
+	done
+
+	if [[ $insultprompt == "Y" ]]; then 
+		GenerateInsult
+	elif [[ $insultprompt == "N" ]]; then
+		Menu
+	fi
+}
+
 #Main function
 clear
-Print_Skull
 
 #Variables
 GREEN='\033[0;32m'
