@@ -4,11 +4,11 @@
 #include <vector>
 using namespace std;
 
-vector <string> arr1 {"Ye are ", "Yer mum be ", "Yer mummy be "};
+vector <string> arr1 {"Ye be ", "Yer mum be ", "Yer mummy be ", "Yer crew be ", "Yer ship be ", "Yer lassy be ", "Yer lad be "};
 
-vector <string> arr2 {"a fowl ", "a wretched ", "a scurvy-lovin' ", "a land-lovin\' "};
+vector <string> arr2 {"a fowl ", "a wretched ", "a scurvy-lovin' ", "a land-lovin\' ", "a good fer nothin\' ", "a lily-livered ", "a yellow bellied ", "a barnacle bottomed ", "a barnacle lovin\' ", "a mermaid marryin\' ", "a thievin\' "};
 
-vector <string> arr3 {"scallywag!", "blubber!", "whale!", "buffoon!", "kraken!"};
+vector <string> arr3 {"scallywag!", "blubber!", "whale!", "buffoon!", "kraken!", "rascal!", "blaggard!", "milk maid!", "landlubber!", "sorry sea dog!", "salty swab!", "blowfish!", "swine!"};
 
 
 int main()
