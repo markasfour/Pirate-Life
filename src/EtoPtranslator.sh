@@ -332,7 +332,7 @@ function FileTrans
 function GenerateInsult 
 {
 	if [ ! -d "./bin" ]; then
-		make
+		make > 0; rm 0
 	fi
 
 	bin/insults.o | xclip -sel c -f
