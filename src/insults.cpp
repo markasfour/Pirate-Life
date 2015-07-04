@@ -4,12 +4,18 @@
 #include <vector>
 using namespace std;
 
-vector <string> arr1 {"Ye be ", "Yer mum be ", "Yer mummy be ", "Yer crew be ", "Yer ship be ", "Yer lassy be ", "Yer lad be "};
+vector <string> arr1 {"Ye be a ", "Yer mum be a ", "Yer mummy be a ", 
+					  "Yer crew be a ", "Yer ship be a ", "Yer lassy be a ", 
+					  "Yer lad be a "};
 
-vector <string> arr2 {"a fowl ", "a wretched ", "a scurvy-lovin' ", "a land-lovin\' ", "a good fer nothin\' ", "a lily-livered ", "a yellow bellied ", "a barnacle bottomed ", "a barnacle lovin\' ", "a mermaid marryin\' ", "a thievin\' "};
+vector <string> arr2 {"fowl ", "wretched ", "scurvy-lovin' ", "land-lovin\' ", 
+					  "good fer nothin\' ", "lily-livered ", "yellow bellied ", 
+					  "barnacle bottomed ", "barnacle lovin\' ", 
+					  "mermaid marryin\' ", "thievin\' "};
 
-vector <string> arr3 {"scallywag!", "blubber!", "whale!", "buffoon!", "kraken!", "rascal!", "blaggard!", "milk maid!", "landlubber!", "sorry sea dog!", "salty swab!", "blowfish!", "swine!"};
-
+vector <string> arr3 {"scallywag!", "blubber!", "whale!", "buffoon!", "kraken!", 
+					  "rascal!", "blaggard!", "milk maid!", "landlubber!", 
+					  "sorry sea dog!", "salty swab!", "blowfish!", "swine!"};
 
 int main()
 {
