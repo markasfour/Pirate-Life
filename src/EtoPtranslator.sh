@@ -351,6 +351,7 @@ function GenerateInsult
 }
 
 #Main function
+make clean > 0; rm 0
 clear
 
 #Variables
