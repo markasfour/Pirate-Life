@@ -107,16 +107,19 @@ void sail() //1
 	{
 		cin >> input;
 	}
+	
 	if (input == "1")
 	{
 		next = rand() % 100;
 		if (next < 20)
 		{
+			clear();
 			cout << "It be smooth sailin\'." << endl;
 			sail();
 		}
 		else if (next < 30)
 		{
+			clear();
 			cout << "Ye got battered up by some stormy weather! ARRGH!" << endl;
 			injury = rand() % 3 + 1; //from 1 to 3
 			cout << "Health -" << injury;
@@ -125,6 +128,7 @@ void sail() //1
 		}
 		else if (next < 45)
 		{
+			clear();
 			if (CREW.size() > 0)
 			{
 				if (next % 3 == 0)
@@ -151,6 +155,7 @@ void sail() //1
 			}
 			else
 			{
+				clear();
 				if (next % 3 == 0)
 				{
 					cout << "Ye came down wit\' scurvy! ARRGH!" << endl;
@@ -177,6 +182,7 @@ void sail() //1
 		}
 		else if (next < 60)
 		{
+			clear();
 			cout << "Ye came across some floatin\' treasure!" << endl;
 			if (next % 2 == 0)
 			{
@@ -192,12 +198,50 @@ void sail() //1
 		}
 		else if (next < 80)
 		{
+			clear();
 			cout << "Thar be a small ship up ahead. Would ye like to attack? (Y/N) " << endl;
+			input = "";
+			cin >> input;
+			while (input != "Y" && input != "N")
+			{
+				cin >> input;
+			}
+			if (input == "Y")
+			{
+				//battle
+			}
+			else if (input == "N")
+			{
+				cout << "Ye let the humble wee vessel be..." << endl;
+			}
 			sail();
 		}
 		else
 		{
+			clear();
 			cout << "A military ship is just under the horizon. Would ye like to attack it? (Y/N) " << endl;
+			input = "";
+			cin >> input;
+			while (input != "Y" && input != "N")
+			{
+				cin >> input;
+			}
+			if (input == "Y")
+			{
+				//battle
+			}
+			else if (input == "N")
+			{
+				if (next % 3 != 0)
+				{
+					cout << "Ye sailed passed their ship unharmed." << endl;
+				}
+				else
+				{
+					cout << "The ship blocked yer path! ARRGH! To battle!" << endl;
+					//battle
+				}
+			}
 			sail();
 		}
 	}
