@@ -83,6 +83,7 @@ void tutorial_init()
 	cout << endl;
 	cout << "Yer objective be to gain as much wealth as possible before death be yer fate! ARRGH" << endl;
 	cout << "Upgrading yer ships, growin\' yer crew, and tryin\' yer luck can help yer chances while sailin\' the seas." << endl;
+	cout << endl;
 	cout << "Ye will start off with the Sloop as yer vessel, a crew of size 0, a wealth of $0, and a health of 100 points." << endl;
 	cout << "Best of luck to ye!" << endl;
 	cout << "Enter \"START\" to begin the game: ";
@@ -135,21 +136,21 @@ void sail() //1
 				{
 					cout << "Yer crew came down wit\' scurvy! ARRGH!" << endl;
 					injury = rand() % 5 + 5; //from 5 to 10
-					cout << "Health -" << injury;
+					cout << "Health -" << injury << endl;
 					HEALTH -= injury;
 				}
 				else if (next % 3 == 1)
 				{
 					cout << "Yer crew started a fight on board yer ship! Them scalleywags!" << endl;
 					injury = rand() % 2 + 5; //from 2 to 7
-					cout << "Health -" << injury;
+					cout << "Health -" << injury << endl;
 					HEALTH -= injury;
 				}
 				else
 				{
 					cout << "Yer crew didn\'t get any shut eye!" << endl;
 					injury = 1;
-					cout << "Health -" << injury;
+					cout << "Health -" << injury << endl;
 					HEALTH -= injury;
 				}
 			}
@@ -160,21 +161,21 @@ void sail() //1
 				{
 					cout << "Ye came down wit\' scurvy! ARRGH!" << endl;
 					injury = rand() % 5 + 5; //from 5 to 10
-					cout << "Health -" << injury;
+					cout << "Health -" << injury << endl;
 					HEALTH -= injury;
 				}
 				else if (next % 3 == 1)
 				{
 					cout << "Ye got sea sick from some rough tides!" << endl;
 					injury = rand() % 2 + 5; //from 2 to 7
-					cout << "Health -" << injury;
+					cout << "Health -" << injury << endl;
 					HEALTH -= injury;
 				}
 				else
 				{
 					cout << "Yer couldn\'t get any shut eye!" << endl;
 					injury = 1;
-					cout << "Health -" << injury;
+					cout << "Health -" << injury << endl;
 					HEALTH -= injury;
 				}
 			}
@@ -276,8 +277,65 @@ void ship_yard() //3
 	}
 	else
 	{
-		//do stuff
+		cout << "Ahoy thar! Welcome to the ship yard!" << endl;
+		cout << "Woul\' ye like to purchase one o\' me ships?" << endl;
+		cout << endl;
+		cout << "1.  Pinnace.....................$150" << endl;
+		cout << "    Health: 120     Crew cap: 10    Attack level: 15" << endl;
+		cout << endl;
+		cout << "2.  Lugger......................$160" << endl;
+		cout << "    Health: 110     Crew cap: 12    Attack level: 18" << endl;
+		cout << endl;
+		cout << "3.  Corvette....................$220" << endl;
+		cout << "    Health: 180     Crew cap: 20    Attack level: 30" << endl;
+		cout << endl;
+		cout << "4.  Schooner....................$275" << endl;
+		cout << "    Health: 200     Crew cap: 20    Attack level: 33" << endl;
+		cout << endl;
+		cout << "5.  Collier.....................$400" << endl;
+		cout << "    Health: 250     Crew cap: 30    Attack level: 45" << endl;
+		cout << endl;
+		cout << "6.  Galleon.....................$650" << endl;
+		cout << "    Health: 375     Crew cap: 75    Attack level: 65" << endl;
+		cout << endl;
+		cout << "7.  Barque......................$1000" << endl;
+		cout << "    Health: 500     Crew cap: 100   Attack level: 90" << endl;
+		cout << endl;
+		cout << "8.  Clipper.....................$2,250" << endl;
+		cout << "    Health: 700     Crew cap: 150   Attack level: 110" << endl;
+		cout << endl;
+		cout << "9.  Frigate.....................$4,500" << endl;
+		cout << "    Health: 1000    Crew cap: 250   Attack level: 150" << endl;
+		cout << endl;
+		cout << "10. Man O\' War.................$5,000" << endl;
+		cout << "    Health: 1200    Crew cap: 200   Attack level: 135" << endl;
+		cout << endl;
+		cout << "11. Ship of the Line............$6,000" << endl;
+		cout << "    Health: 1100    Crew cap: 300   Attack level: 145" << endl;
+		cout << endl;
+		cout << "12. The Armada's Brig...........$15,000" << endl;
+		cout << "    Health: 1500    Crew cap: 450   Attack level: 200" << endl;
+		cout << endl;
+		cout << "13. Royal Navy's Frigate........$20,000" << endl;
+		cout << "    Health: 1500    Crew cap: 500   Attack level: 200" << endl;
+		cout << endl;
+		cout << "14. The Black Pearl.............$100,000" << endl;
+		cout << "    Health: 2000    Crew cap: 750   Attack level: 300" << endl;
+		cout << endl;
+		cout << "15. The Flying Dutchman.........$500,000" << endl;
+		cout << "    Health: 3000    Crew cap: 1000  Attack level: 400" << endl;
+		cout << endl;
+		
+		cin >> input;
+		while (input != "1" && input != "2" && input != "1" && input != "4" && 
+			   input != "5" && input != "6" && input != "7" && input != "8" && 
+			   input != "9" && input != "10" && input != "11" && input != "12" && 
+			   input != "13" && input != "14" && input != "15")
+		{
+			cin >> input;
+		}
 	}
+	game_play();
 }
 
 void try_luck() //4
@@ -300,6 +358,7 @@ void try_luck() //4
 	{
 		//do stuff
 	}
+	game_play();
 }
 
 void status() //5
