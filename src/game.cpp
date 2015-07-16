@@ -14,6 +14,8 @@ vector <string> CREW;
 
 //prototypes
 void game_play();
+void sail();
+void status();
 
 //clear screen
 void clear() 
@@ -39,7 +41,7 @@ bool init()
 	else if(input == "Y")
 	{
 		clear();
-		cout << "That be the spirit! What be yer name? "; 
+		cout << "That be the spirit! What be yer name? :"; 
 		cin >> NAME;
 		return true;
 	}
@@ -69,7 +71,8 @@ void sea_menu()
 	cout << "                    Navigate" << endl;
 	cout << "    --------------------------------------" << endl;
 	cout << "    |   1.    Continue sailing           |" << endl;
-	cout << "    |   2.    Return to Land             |" << endl;
+	cout << "    |   2.    Check Status               |" << endl;
+	cout << "    |   3.    Return to Land             |" << endl;
 	cout << "    --------------------------------------" << endl;
 }
 
@@ -100,11 +103,12 @@ void sail() //1
 	int next = 0;
 	int injury = 0;
 	int treasure = 0;
-
+	
+	cout << "Ye be sailin\' the Seven Seas! ARRGH!" << endl;
 	sea_menu();
 	cout << "What woul\' ye like to do, capt\'n " << NAME << "? " << endl;
 	string input = "";
-	while (input != "1" && input != "2")
+	while (input != "1" && input != "2" && input != "3")
 	{
 		cin >> input;
 	}
@@ -249,6 +253,12 @@ void sail() //1
 	else if (input == "2")
 	{
 		clear();
+		status();
+		sail();
+	}
+	else if (input == "3")
+	{
+		clear();
 		game_play();
 	}
 }
@@ -256,7 +266,6 @@ void sail() //1
 void build_crew() //2
 {
 	clear();
-	game_play();
 }
 
 void ship_yard() //3
@@ -273,7 +282,6 @@ void ship_yard() //3
 			cin >> input;
 		}
 		clear();
-		game_play();
 	}
 	else
 	{
@@ -335,7 +343,6 @@ void ship_yard() //3
 			cin >> input;
 		}
 	}
-	game_play();
 }
 
 void try_luck() //4
@@ -352,13 +359,11 @@ void try_luck() //4
 			cin >> input;
 		}
 		clear();
-		game_play();
 	}
 	else
 	{
 		//do stuff
 	}
-	game_play();
 }
 
 void status() //5
@@ -388,7 +393,6 @@ void status() //5
 		cin >> input;
 	}
 	clear();
-	game_play();
 }
 
 void save() //6
@@ -402,7 +406,6 @@ void save() //6
 		cin >> input;
 	}
 	clear();
-	game_play();
 }
 
 void game_play()
@@ -421,31 +424,37 @@ void game_play()
 	{
 		clear();
 		sail();
+		game_play();
 	}
 	else if (input == "2")
 	{
 		clear();
 		build_crew();
+		game_play();
 	}
 	else if (input == "3")
 	{
 		clear();
 		ship_yard();
+		game_play();
 	}
 	else if (input == "4")
 	{
 		clear();
 		try_luck();
+		game_play();
 	}
 	else if (input == "5")
 	{
 		clear();
 		status();
+		game_play();
 	}
 	else if (input == "6")
 	{
 		clear();
 		save();
+		game_play();
 	}
 }
 
@@ -460,6 +469,9 @@ int main()
 		game_play();
 	}
 	clear();
-	cout << "Till we set sail again, " << NAME << "!" << endl;
+	if (NAME != "")
+	{
+		cout << "Till we set sail again, " << NAME << "!" << endl;
+	}
 	return 0;
 }
