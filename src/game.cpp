@@ -2,6 +2,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
+#include "menu.h"
 using namespace std;
 
 //global variables
@@ -11,6 +12,9 @@ string SHIP = "Sloop";
 int SHIP_HEALTH = 100;
 string NAME;
 vector <string> CREW;
+
+//MENU
+menu MENU;
 
 //prototypes
 void game_play();
@@ -48,41 +52,13 @@ bool init()
 	
 }
 
-//main menu
-void land_menu()
-{
-	cout << "                      MENU                " << endl;
-	cout << "    --------------------------------------" << endl;
-	cout << "    |   1.    Navigate the Seas          |" << endl;
-	cout << "    |   2.    Build a Crew               |" << endl;
-	cout << "    |   3.    Find a Ship                |" << endl;
-	cout << "    |   4.    Try Yer Luck               |" << endl;
-	cout << "    |   5.    Check Yer Satus            |" << endl;
-	cout << "    |   6.    Save                       |" << endl;
-	cout << "    --------------------------------------" << endl;
-	cout << "    |         Q to quit the game         |" << endl;
-	cout << "    --------------------------------------" << endl;
-
-}
-
-//sea menu
-void sea_menu()
-{
-	cout << "                    Navigate" << endl;
-	cout << "    --------------------------------------" << endl;
-	cout << "    |   1.    Continue sailing           |" << endl;
-	cout << "    |   2.    Check Status               |" << endl;
-	cout << "    |   3.    Return to Land             |" << endl;
-	cout << "    --------------------------------------" << endl;
-}
-
 //used first time playing game
 void tutorial_init()
 {
 	clear();
 	cout << "It be a pleasure to set sail with ye, " << NAME << "! ARRGH!" << endl << endl;
 	cout << "This be the main menu. Ye can navigate the menu by enterin\' the respective numbers." << endl << endl;
-	land_menu();
+	MENU.land();
 	cout << endl;
 	cout << "Yer objective be to gain as much wealth as possible before death be yer fate! ARRGH" << endl;
 	cout << "Upgrading yer ships, growin\' yer crew, and tryin\' yer luck can help yer chances while sailin\' the seas." << endl;
@@ -105,7 +81,7 @@ void sail() //1
 	int treasure = 0;
 	
 	cout << "Ye be sailin\' the Seven Seas! ARRGH!" << endl;
-	sea_menu();
+	MENU.sea();
 	cout << "What woul\' ye like to do, capt\'n " << NAME << "? " << endl;
 	string input = "";
 	while (input != "1" && input != "2" && input != "3")
@@ -134,7 +110,7 @@ void sail() //1
 		else if (next < 45)
 		{
 			clear();
-			if (CREW.size() > 0)
+			if (CREW.size() > 1)
 			{
 				if (next % 3 == 0)
 				{
@@ -224,18 +200,28 @@ void sail() //1
 		else
 		{
 			clear();
-			cout << "A military ship is just under the horizon. Would ye like to attack it? (Y/N) " << endl;
+			MENU.prebattle();
+			cout << "A military ship is just under the horizon. Would ye like to do?" << endl;
 			input = "";
 			cin >> input;
-			while (input != "Y" && input != "N")
+			while (input != "1" && input != "2" && input != "3" && input != "4")
 			{
 				cin >> input;
 			}
-			if (input == "Y")
+			if (input == "1")
 			{
 				//battle
 			}
-			else if (input == "N")
+			else if (input == "2")
+			{
+				clear();
+				status();
+			}
+			else if (input == "3")
+			{
+
+			}
+			else if (input == "4")
 			{
 				if (next % 3 != 0)
 				{
@@ -410,7 +396,7 @@ void save() //6
 
 void game_play()
 {
-	land_menu();
+	MENU.land();
 	string input = "";
 	while (input != "1" && input != "2" && input != "3" && input != "4" && input != "5" && input != "6" && input != "Q")
 	{
