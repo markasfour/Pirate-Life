@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "menu.h"
+#include "ship.h"
 using namespace std;
 
 //global variables
@@ -12,6 +13,7 @@ string SHIP = "Sloop";
 int SHIP_HEALTH = 100;
 string NAME;
 vector <string> CREW;
+
 
 //MENU
 menu MENU;
