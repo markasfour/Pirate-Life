@@ -18,7 +18,7 @@ vector <string> CREW;
 menu MENU;
 
 //prototypes
-void game_play();
+bool game_play();
 void sail();
 void status();
 
@@ -285,7 +285,6 @@ void sail() //1
 	else if (input == "3")
 	{
 		clear();
-		game_play();
 	}
 }
 
@@ -340,7 +339,6 @@ void ship_yard() //3
 		{
 			cin >> input;
 		}
-		game_play();
 	}
 }
 
@@ -407,7 +405,7 @@ void save() //6
 	clear();
 }
 
-void game_play()
+bool game_play()
 {
 	MENU.land();
 	string input = "";
@@ -417,43 +415,37 @@ void game_play()
 	}
 	if (input == "Q")
 	{
-		return;
+		return false;
 	}
 	else if (input == "1")
 	{
 		clear();
 		sail();
-		game_play();
 	}
 	else if (input == "2")
 	{
 		clear();
 		build_crew();
-		game_play();
 	}
 	else if (input == "3")
 	{
 		clear();
 		ship_yard();
-		game_play();
 	}
 	else if (input == "4")
 	{
 		clear();
 		try_luck();
-		game_play();
 	}
 	else if (input == "5")
 	{
 		clear();
 		status();
-		game_play();
 	}
 	else if (input == "6")
 	{
 		clear();
 		save();
-		game_play();
 	}
 }
 
@@ -465,7 +457,7 @@ int main()
 	if (init())
 	{
 		tutorial_init();
-		game_play();
+		while (game_play());
 	}
 	clear();
 	if (NAME != "")
