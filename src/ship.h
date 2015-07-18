@@ -16,59 +16,23 @@ struct vessel
 		max_health = 100;
 		max_capacity = 10;
 		max_value = 100;	
-	}
+	};
+	~vessel() {};//destructor
 	vessel(string n, int mh, int mc, int mv) //constructor for ships in yard
 	{
 		name = n;
 		max_health = mh;
 		max_capacity = mc;
 		max_value = mv;
-	}
+	};
 	void change(string n, int mh, int mc, int mv) //alter boat attributes
 	{
 		name = n;
 		max_health = mh;
 		max_capacity = mc;
 		max_value = mv;
-	}
+	};
 };
-
-vector <vessel> ships;
-void populate_ships()
-{
-	vessel boat;
-	ships.push_back(boat);
-	boat.change("Pinnace", 120, 10, 150);
-	ships.push_back(boat);
-	boat.change("Lugger", 110, 12, 160);
-	ships.push_back(boat);
-	boat.change("Corvette", 180, 20, 220);
-	ships.push_back(boat);
-	boat.change("Schooner", 200, 20, 275);
-	ships.push_back(boat);
-	boat.change("Collier", 250, 30, 400);
-	ships.push_back(boat);
-	boat.change("Galleon", 375, 75, 650);
-	ships.push_back(boat);
-	boat.change("Barque", 500, 100, 1000);
-	ships.push_back(boat);
-	boat.change("Clipper", 700, 150, 2250);
-	ships.push_back(boat);
-	boat.change("Frigate", 1000, 250, 4500);
-	ships.push_back(boat);
-	boat.change("Man O\' War", 1200, 200, 5000);
-	ships.push_back(boat);
-	boat.change("Ship of the Line", 1100, 300, 6000);
-	ships.push_back(boat);
-	boat.change("The Armada\'s Brig", 1500, 450, 15000);
-	ships.push_back(boat);
-	boat.change("Royal Navy's Frigate", 1500, 450, 20000);
-	ships.push_back(boat);
-	boat.change("The Black Pearl", 2000, 750, 100000);
-	ships.push_back(boat);
-	boat.change("The Flying Dutchman", 3000, 1000, 500000);
-	ships.push_back(boat);
-}
 
 class ship
 {
