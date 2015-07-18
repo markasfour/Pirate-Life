@@ -9,8 +9,7 @@ using namespace std;
 //global variables
 int HEALTH = 100;
 int WEALTH = 0;
-string SHIP = "Sloop";
-int SHIP_HEALTH = 100;
+ship MY_SHIP;
 string NAME;
 vector <string> CREW;
 
@@ -103,7 +102,7 @@ void tutorial_init()
 	cout << "Yer objective be to gain as much wealth as possible before death be yer fate! ARRGH" << endl;
 	cout << "Upgrading yer ships, growin\' yer crew, and tryin\' yer luck can help yer chances while sailin\' the seas." << endl;
 	cout << endl;
-	cout << "Ye will start off with the Sloop as yer vessel, a crew of size 0, a wealth of $0, and a health of 100 points." << endl;
+	cout << "Ye will start off with the " << MY_SHIP.get_name() << " as yer vessel, a crew of size 0, a wealth of $0, and a health of 100 points." << endl;
 	cout << "Best of luck to ye!" << endl;
 	cout << "Enter \"START\" to begin the game: ";
 	string input = "";
@@ -371,8 +370,7 @@ void status() //5
 	cout << "Health: " << HEALTH << endl;
 	cout << "Wealth: " << WEALTH << endl;
 	cout << endl;
-	cout << "Ship: " << SHIP << endl;
-	cout << "Ship Health: " << SHIP_HEALTH << endl;
+	MY_SHIP.get_details();
 	cout << "Crew size: " << CREW.size() << endl;
 	if (CREW.size() > 0)
 	{

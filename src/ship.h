@@ -42,10 +42,10 @@ class ship
 		int capacity;
 		
 	public:
-		ship() {}; //constructor
+		ship() {health = current.max_health;}; //constructor
 		~ship() {}; //destructor
 
-		string get_current_ship() {return current.name;}; //return name of current ship
+		string get_name() {return current.name;}; //return name of current ship
 		int get_max_health() {return current.max_health;}; //return max health of current ship
 		int get_health() {return health;}; //return current health of current ship
 		int get_max_capacity() {return current.max_capacity;}; //return max capacity of current ship
@@ -53,14 +53,14 @@ class ship
 		int get_max_value() {return current.max_value;}; //return max value of current ship
 		int get_value() {return ((get_health() / get_max_health()) * get_max_value());}; //return calculated value of current ship
 
-		void details(); //print out all current ship details
+		void get_details(); //print out all current ship details
 		void buy(vessel name); //procedure to convert current ship to new ship
 
 };
 
-void ship::details()
+void ship::get_details()
 {
-	cout << get_current_ship();
+	cout << get_name() << endl;
 	cout << "Health: " << get_health() << "/" << get_max_health() << endl;
 	cout << "Capacity: " << get_capacity() << "/" << get_max_capacity() << endl;
 	cout << "Value: " << get_value() << "/" << get_max_value() << endl;
