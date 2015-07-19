@@ -4,14 +4,23 @@
 #include <time.h>
 #include "menu.h"
 #include "ship.h"
+#include "people.h"
 using namespace std;
 
 //global variables
+//Main character
 int HEALTH = 100;
 int WEALTH = 0;
-ship MY_SHIP;
 string NAME;
-vector <string> CREW;
+
+//Main character's ship
+ship MY_SHIP;
+
+//Ships in ship yard
+vector <vessel> ships;
+
+//Main character's crew
+vector <person> CREW;
 
 //MENU
 menu MENU;
@@ -28,7 +37,6 @@ void clear()
     cout << "\x1B[2J\x1B[H";
 }
 
-vector <vessel> ships;
 void populate_ships()
 {
 	vessel boat;
@@ -377,7 +385,7 @@ void status() //5
 		cout << "Crew members: " << endl;
 		for (int i = 0; i < CREW.size(); i++)
 		{
-			cout << "  " << CREW.at(i) << endl;
+			cout << "  " << CREW.at(i).name << endl;
 		}
 	}
 	cout << endl;
