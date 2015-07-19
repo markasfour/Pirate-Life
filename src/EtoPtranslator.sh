@@ -200,12 +200,14 @@ function Menu
 	echo "     ------------------------------------------"
 	echo "     |F to translate a file (to overwrite, -w)|"
 	echo "     ------------------------------------------"
+	echo "     |            G to play game              |";
+	echo "     ------------------------------------------";
 	echo "     |               Q to quit                |"
 	echo "     ------------------------------------------"
 	echo ""
 	
 	MenuInput=""
-	while [[ $MenuInput != "S" && $MenuInput != "F" && $MenuInput != "Q" && $MenuInput != "I" ]]; do
+	while [[ $MenuInput != "S" && $MenuInput != "F" && $MenuInput != "Q" && $MenuInput != "I" && $MenuInput != "G" ]]; do
 		read MenuInput
 	done
 
@@ -230,6 +232,11 @@ function Menu
 		Print_Skull
 		echo ""
 		GenerateInsult
+	elif [[ $MenuInput == "G" ]]; then
+		clear
+		make game
+		bin/game.o
+		Menu
 	elif [[ $MenuInput == "Q" ]]; then
 		clear
 		echo "Till we set sail again, me lad."
