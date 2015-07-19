@@ -18,6 +18,12 @@ struct person
 		gender = p.gender;
 		type = p.type;
 	}
+	void get_details() //print all of person's details
+	{
+		cout << name << endl;
+		cout << gender << endl;
+		cout << type << endl;
+	}
 };
 
 #endif

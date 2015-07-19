@@ -354,7 +354,7 @@ void try_luck() //4
 	string input = "";
 	if (WEALTH == 0)
 	{
-		cout << "Ye need some wealth to come to the ship yard!" << endl;
+		cout << "Ye need some wealth to come to the tavern!" << endl;
 		cout << "Try settin\' sail first." << endl;
 		cout << "(Type C to Continue) : ";
 		cin >> input;
