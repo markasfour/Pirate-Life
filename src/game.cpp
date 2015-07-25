@@ -16,9 +16,6 @@ string NAME;
 //Main character's ship
 ship MY_SHIP;
 
-//Ships in ship yard
-vector <vessel> ships;
-
 //Main character's crew
 vector <person> CREW;
 
@@ -35,42 +32,6 @@ void clear()
 {
 	// CSI[2J clears screen, CSI[H moves the cursor to top-left corner
     cout << "\x1B[2J\x1B[H";
-}
-
-void populate_ships()
-{
-	vessel boat;
-	ships.push_back(boat);
-	boat.change("Pinnace", 120, 10, 150);
-	ships.push_back(boat);
-	boat.change("Lugger", 110, 12, 160);
-	ships.push_back(boat);
-	boat.change("Corvette", 180, 20, 220);
-	ships.push_back(boat);
-	boat.change("Schooner", 200, 20, 275);
-	ships.push_back(boat);
-	boat.change("Collier", 250, 30, 400);
-	ships.push_back(boat);
-	boat.change("Galleon", 375, 75, 650);
-	ships.push_back(boat);
-	boat.change("Barque", 500, 100, 1000);
-	ships.push_back(boat);
-	boat.change("Clipper", 700, 150, 2250);
-	ships.push_back(boat);
-	boat.change("Frigate", 1000, 250, 4500);
-	ships.push_back(boat);
-	boat.change("Man O\' War", 1200, 200, 5000);
-	ships.push_back(boat);
-	boat.change("Ship of the Line", 1100, 300, 6000);
-	ships.push_back(boat);
-	boat.change("The Armada\'s Brig", 1500, 450, 15000);
-	ships.push_back(boat);
-	boat.change("Royal Navy's Frigate", 1500, 450, 20000);
-	ships.push_back(boat);
-	boat.change("The Black Pearl", 2000, 750, 100000);
-	ships.push_back(boat);
-	boat.change("The Flying Dutchman", 3000, 1000, 500000);
-	ships.push_back(boat);
 }
 
 //used first time playing game
@@ -90,13 +51,16 @@ bool init()
 	else if(input == "Y")
 	{
 		clear();
-		cout << "That be the spirit! What be yer name? :"; 
-		cin >> NAME;
 		//initialize game
 		populate_ships();
+		populate_male_first();
+		populate_female_first();
+		populate_last();
+		
+		cout << "That be the spirit! What be yer name? :"; 
+		cin >> NAME;
 		return true;
 	}
-	
 }
 
 //used first time playing game
