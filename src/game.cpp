@@ -379,13 +379,16 @@ void status() //5
 	cout << "Wealth: " << WEALTH << endl;
 	cout << endl;
 	MY_SHIP.get_details();
+	cout << endl;
 	cout << "Crew size: " << CREW.size() << endl;
 	if (CREW.size() > 0)
 	{
 		cout << "Crew members: " << endl;
+		cout << endl;
 		for (int i = 0; i < CREW.size(); i++)
 		{
-			cout << "  " << CREW.at(i).name << endl;
+			CREW.at(i).get_details();
+			cout << endl;
 		}
 	}
 	cout << endl;
