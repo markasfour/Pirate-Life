@@ -26,6 +26,7 @@ menu MENU;
 bool game_play();
 void sail();
 void status();
+void interact();
 
 //clear screen
 void clear() 
@@ -282,14 +283,8 @@ void build_crew() //2
 	}
 	if (input == "1")
 	{
-		MENU.interact();
-		input = "";
-		cin >> input;
-		while (input != "1" && input != "2" && input != "3" && input != "4")
-		{
-			cin >> input;
-		}
-		
+		clear();
+		interact();
 	}
 	else if (input == "2")
 	{
@@ -297,7 +292,75 @@ void build_crew() //2
 	}
 	else if (input == "3")
 	{
-		game_play();
+		clear();	
+	}
+}
+
+void interact()
+{
+	string input = "";
+	person a;
+	string g;
+	if (a.get_gender() == "Male")
+	{
+		g = "lad";
+	}
+	else
+	{
+		g = "lass";
+	}
+	cout << "Ye be talking to a "<< g<< " named " << a.get_name() << " who be a " << a.get_type() << "." << endl;
+	MENU.interact();
+	cin >> input;
+	while (input != "1" && input != "2" && input != "3" && input != "4")
+	{
+		cin >> input;
+	}
+	if (input == "1")
+	{
+		//TODO make random chance to join
+		if (CREW.size() < MY_SHIP.get_max_capacity())
+		{
+			CREW.push_back(a);
+			cout << a.get_name() << " has joined yer crew! ARRGH!" << endl;
+			input = "";
+			cout << "Type C to continue: ";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			build_crew();
+		}
+		else
+		{
+			cout << "Yer vessel is already full!" << endl;
+			cout << "Ye need a bigger ship to expand yer crew!" << endl;
+			input = "";
+			cout << "Type C to continue: ";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			build_crew();
+
+		}
+	}
+	else if (input == "2")
+	{
+		//TODO make random chance to join
+
+	}
+	else if (input == "3")
+	{
+		//TODO make random chance to join
+
+	}
+	else if (input == "4")
+	{
+		clear();
+		build_crew();
 	}
 }
 

@@ -209,11 +209,14 @@ struct person
 	void get_details() //print all of person's details
 	{
 		cout << name << endl;
-		cout << gender << endl;
-		cout << type << endl;
+		cout << "- " << gender << endl;
+		cout << "- " << type << endl;
 	}
+	string get_name() {return name;}
 	string get_name(person p) {return p.name;}
+	string get_gender() {return gender;}
 	string get_gender(person p) {return p.gender;}
+	string get_type() {return type;}
 	string get_type(person p) {return p.type;}
 };
 
