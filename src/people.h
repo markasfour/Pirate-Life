@@ -12,7 +12,7 @@ vector <string> last;
 void populate_male_first()
 {
 	//names taken from http://names.mongabay.com/male_names.htm
-	string names[] = {"James", "John", "Robert", "Michael", 
+	male_first =	 {"James", "John", "Robert", "Michael", 
 					  "William", "David", "Richard", "Charles",
 					  "Joseph", "Thomas", "Christopher" "Daniel",
 					  "Paul", "Mark", "Donald", "George", "Kenneth",
@@ -35,17 +35,12 @@ void populate_male_first()
 					  "Clarence", "Sean", "Earl", "Jimmy",
 					  "Antonio", "Danny", "Bryan", "Tony", "Mike",
 					  "Leonard", "Dale"};
-	int size = 100;
-	for (int i = 0; i < size; i++)
-	{
-		male_first.push_back(names[i]);
-	}
 }
 
 void populate_female_first()
 {
 	//names taken from http://names.mongabay.com/female_names.htm
-	string names[] = {"Mary", "Patricia", "Linda", "Barbara",
+	female_first =	 {"Mary", "Patricia", "Linda", "Barbara",
 					  "Elizabeth", "Jennifer", "Maria", "Susan",
 					  "Margaret", "Dorthy", "Lisa", "Nancy", 
 					  "Karen", "Betty", "Helen", "Sandra", "Donna",
@@ -69,17 +64,12 @@ void populate_female_first()
 					  "Ruby", "Lois", "Tina", "Phyllis", "Norma",
 					  "Paula", "Diana", "Annie", "Lillian", "Emily",
 					  "Robin"};
-	int size = 100;
-	for (int i = 0; i < size; i++)
-	{
-		female_first.push_back(names[i]);
-	}
 }
 
 void populate_last()
 {
 	//names taken from http://names.mongabay.com/data/1000.html
-	string names[] = {"Smith", "Johnson", "Williams", "Brown", 
+	last =			{"Smith", "Johnson", "Williams", "Brown", 
 					 "Jones", "Miller", "Davis", "Garcia", 
 					 "Rodriguez", "Wilson", "Martinez", "Anderson",
 					 "Taylor", "Thomas", "Hernandez", "Moore", 
@@ -103,11 +93,6 @@ void populate_last()
 					 "Powell", "Sullivan", "Russell", "Ortiz",
 					 "Jenkins", "Gutierrez", "Perry", "Butler", 
 					 "Barnes", "Fisher"};
-	int size = 100;
-	for (int i = 0; i < size; i++)
-	{
-		last.push_back(names[i]);
-	}
 }
 
 struct person

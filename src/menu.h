@@ -15,6 +15,8 @@ class menu
 		void sea();
 		void prebattle();
 		void battle();
+		void dock();
+		void interact();
 };
 
 //main menu
@@ -68,6 +70,30 @@ void menu::battle()
 	cout << "    |   4.    Check Yer Status           |" << endl;
 	cout << "    |   5.    Flee                       |" << endl;
 	cout << "    --------------------------------------" << endl;
+}
+
+//dock menu
+void menu::dock()
+{
+	cout << "                     Dock" << endl;
+	cout << "    --------------------------------------" << endl;
+	cout << "    |   1.    Interact with Individuals  |" << endl;
+	cout << "    |   2.    Threaten the Crowd         |" << endl;
+	cout << "    |   3.    Return                     |" << endl;
+	cout << "    --------------------------------------" << endl;
+}
+
+//interact menu
+void menu::interact()
+{
+	cout << "                   Interact" << endl;
+	cout << "    --------------------------------------" << endl;
+	cout << "    |   1.    Ask to Join Yer Crew       |" << endl;
+	cout << "    |   2.    Insult                     |" << endl;
+	cout << "    |   3.    Bribe                      |" << endl;
+	cout << "    |   4.    Return                     |" << endl;
+	cout << "    --------------------------------------" << endl;
+
 }
 
 #endif

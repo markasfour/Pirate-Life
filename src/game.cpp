@@ -52,10 +52,18 @@ bool init()
 	{
 		clear();
 		//initialize game
+		cout << "Populating ship yard...";
 		populate_ships();
+		cout << "Done" << endl;
+		cout << "Populating male first names...";
 		populate_male_first();
+		cout << "Done" << endl;
+		cout << "Populating female first names...";
 		populate_female_first();
+		cout << "Done" << endl;
+		cout << "Populating last names...";
 		populate_last();
+		cout << "Done" << endl;
 		
 		cout << "That be the spirit! What be yer name? :"; 
 		cin >> NAME;
@@ -261,7 +269,36 @@ void sail() //1
 
 void build_crew() //2
 {
+	string input = "";
+
 	clear();
+	cout << "Ye are at a crowded dock" << endl;
+	cout << endl;
+	MENU.dock();
+	cin >> input;
+	while (input != "1" && input != "2" && input != "3")
+	{
+		cin >> input;
+	}
+	if (input == "1")
+	{
+		MENU.interact();
+		input = "";
+		cin >> input;
+		while (input != "1" && input != "2" && input != "3" && input != "4")
+		{
+			cin >> input;
+		}
+		
+	}
+	else if (input == "2")
+	{
+		//threaten
+	}
+	else if (input == "3")
+	{
+		game_play();
+	}
 }
 
 void ship_yard() //3
