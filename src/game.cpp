@@ -27,6 +27,7 @@ bool game_play();
 void sail();
 void status();
 void interact();
+void edit_crew();
 
 //clear screen
 void clear() 
@@ -277,7 +278,7 @@ void build_crew() //2
 	cout << endl;
 	MENU.dock();
 	cin >> input;
-	while (input != "1" && input != "2" && input != "3")
+	while (input != "1" && input != "2" && input != "3" && input != "4")
 	{
 		cin >> input;
 	}
@@ -326,6 +327,11 @@ void build_crew() //2
 		}
 	}
 	else if (input == "3")
+	{
+		clear();
+		edit_crew();	
+	}
+	else if (input == "4")
 	{
 		clear();	
 	}
@@ -472,6 +478,134 @@ void interact()
 				}
 				build_crew();
 			}
+		}
+	}
+	else if (input == "4")
+	{
+		clear();
+		build_crew();
+	}
+}
+
+bool find_crew_member(string n)
+{
+	for (int i = 0; i < CREW.size(); i++)
+	{
+		if (n == CREW.at(i).get_name())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+int get_crew_member_index(string n)
+{
+	for (int i = 0; i < CREW.size(); i++)
+	{
+		if (n == CREW.at(i).get_name())
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+person get_crew_member(string n)
+{
+	for (int i = 0; i < CREW.size(); i++)
+	{
+		if (n == CREW.at(i).get_name())
+		{
+			return CREW.at(i);
+		}
+	}
+}
+
+void edit_crew()
+{
+	MENU.edit_crew();
+	string input = "";
+	while (input != "1" && input != "2" && input != "3" && input != "4")
+	{
+		cin >> input;
+	}
+	if (input == "1")
+	{
+		cout << "Crew: " << endl;
+		cout << CREW.at(0).get_name();
+		for (int i = 1; i < CREW.size(); i++)
+		{
+			cout << ", " << CREW.at(i).get_name();
+		}
+		cout << "Type C to Continue: ";
+		input = "";
+		cin >> input;
+		while (input != "C")
+		{
+			cin >> input;
+		}
+		clear();
+		edit_crew();
+	}
+	else if (input == "2")
+	{
+		cout << "Enter a crew member\'s name to retrieve their stats (Type R to return): ";
+		string n = "";
+		cin >> n;
+		while (n != "R" && find_crew_member(n))
+		{
+			cout << "That ain\'t be a person in yer crew." << endl;
+			cin >> n;
+		}
+		if (n == "R")
+		{
+			clear();
+			edit_crew();
+		}
+		else
+		{
+			get_crew_member(n).get_details();
+			cout << "Type C to Continue: ";
+			input = "";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			clear();
+			edit_crew();
+		}
+	}
+	else if (input == "3")
+	{
+		cout << "Enter a crew member\'s name to remove (Type R to return): ";
+		string n = "";
+		cin >> n;
+		while (n != "R" && find_crew_member(n))
+		{
+			cout << "That ain\'t be a person in yer crew." << endl;
+			cin >> n;
+		}
+		if (n == "R")
+		{
+			clear();
+			edit_crew();
+		}
+		else
+		{
+			CREW.erase(CREW.begin() + get_crew_member_index(n));
+			MY_SHIP.sub_from_capacity();
+			cout << n << " has been thrown overboard! ARRGH!" << endl;
+			cout << "Type C to Continue: ";
+			input = "";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			clear();
+			edit_crew();
 		}
 	}
 	else if (input == "4")

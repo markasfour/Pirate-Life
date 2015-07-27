@@ -17,6 +17,7 @@ class menu
 		void battle();
 		void dock();
 		void interact();
+		void edit_crew();
 };
 
 //main menu
@@ -79,7 +80,8 @@ void menu::dock()
 	cout << "    --------------------------------------" << endl;
 	cout << "    |   1.    Interact with Individuals  |" << endl;
 	cout << "    |   2.    Threaten the Crowd         |" << endl;
-	cout << "    |   3.    Return                     |" << endl;
+	cout << "    |   3.    Edit Crew                  |" << endl;
+	cout << "    |   4.    Return                     |" << endl;
 	cout << "    --------------------------------------" << endl;
 }
 
@@ -94,6 +96,17 @@ void menu::interact()
 	cout << "    |   4.    Return                     |" << endl;
 	cout << "    --------------------------------------" << endl;
 
+}
+
+void menu::edit_crew()
+{
+	cout << "                   Edit Crew" << endl;
+	cout << "    --------------------------------------" << endl;
+	cout << "    |   1.    List Crew                  |" << endl;
+	cout << "    |   2.    Get Stats                  |" << endl;
+	cout << "    |   3.    Remove                     |" << endl;
+	cout << "    |   4.    Return                     |" << endl;
+	cout << "    --------------------------------------" << endl;
 }
 
 #endif
