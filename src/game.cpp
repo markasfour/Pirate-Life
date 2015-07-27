@@ -288,7 +288,42 @@ void build_crew() //2
 	}
 	else if (input == "2")
 	{
-		//threaten
+		cout << "Ye threatened the crowd..." << endl;
+		//TODO make random chance for people to join
+		
+		if (CREW.size() >= MY_SHIP.get_max_capacity())
+		{
+			cout << "Yer vessel is already full!" << endl;
+			cout << "Ye need a bigger ship to expand yer crew!" << endl;
+			input = "";
+			cout << "Type C to continue: ";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			build_crew();
+		}
+		else
+		{
+			int crowd = (rand() % (MY_SHIP.get_max_capacity() - MY_SHIP.get_capacity()) % 5) + 1;
+			for (int i = 0; i < crowd; i++)
+			{
+				person a;
+				CREW.push_back(a);
+				MY_SHIP.add_to_capacity();
+				cout << a.get_name() << " is intimidated by ye." << endl;
+				cout << a.get_name() << " has joined yer crew! ARRGH!" << endl;
+			}
+			input = "";
+			cout << "Type C to continue: ";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			build_crew();
+		}
 	}
 	else if (input == "3")
 	{
@@ -322,6 +357,7 @@ void interact()
 		if (CREW.size() < MY_SHIP.get_max_capacity())
 		{
 			CREW.push_back(a);
+			MY_SHIP.add_to_capacity();
 			cout << a.get_name() << " has joined yer crew! ARRGH!" << endl;
 			input = "";
 			cout << "Type C to continue: ";
@@ -350,12 +386,93 @@ void interact()
 	else if (input == "2")
 	{
 		//TODO make random chance to join
+		cout << "Ye insulted " << a.get_name() << "..." << endl;
+		if (CREW.size() < MY_SHIP.get_max_capacity())
+		{
+			CREW.push_back(a);
+			MY_SHIP.add_to_capacity();
+			cout << a.get_name() << " has joined yer crew! ARRGH!" << endl;
+			input = "";
+			cout << "Type C to continue: ";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			build_crew();
+		}
+		else
+		{
+			cout << "Yer vessel is already full!" << endl;
+			cout << "Ye need a bigger ship to expand yer crew!" << endl;
+			input = "";
+			cout << "Type C to continue: ";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			build_crew();
 
+		}
 	}
 	else if (input == "3")
 	{
-		//TODO make random chance to join
-
+		if (WEALTH == 0)
+		{
+			cout << "Ye need some wealth to come to the ship yard!" << endl;
+			cout << "Try settin\' sail first." << endl;
+			cout << "(Type C to Continue) : ";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			clear();
+			build_crew();
+		}
+		else
+		{
+			cout << "How much would ye like to offer? ";
+			int num = 0;
+			cin >> num;
+			if (num > WEALTH || num <= 0)
+			{
+				do {
+					cout << "Ye can\'t offer that much!" << endl;
+					cout << "How much would ye like to offer? " << endl;
+				} while (num > WEALTH && num <= 0);
+			}
+			WEALTH = WEALTH - num;
+			//TODO make random chance to join
+			if (CREW.size() < MY_SHIP.get_max_capacity())
+			{
+				CREW.push_back(a);
+				MY_SHIP.add_to_capacity();
+				cout << a.get_name() << " has joined yer crew! ARRGH!" << endl;
+				input = "";
+				cout << "Type C to continue: ";
+				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				build_crew();
+			}
+			else
+			{
+				cout << "Yer vessel is already full!" << endl;
+				cout << "Ye need a bigger ship to expand yer crew!" << endl;
+				input = "";
+				cout << "Type C to continue: ";
+				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				build_crew();
+			}
+		}
 	}
 	else if (input == "4")
 	{
