@@ -552,11 +552,15 @@ void edit_crew()
 	{
 		cout << "Enter a crew member\'s name to retrieve their stats (Type R to return): ";
 		string n = "";
-		cin >> n;
-		while (n != "R" && find_crew_member(n))
+		string m = "";
+		cin >> n >> m;
+		n += " " + m;
+		while (n != "R" && !(find_crew_member(n)))
 		{
 			cout << "That ain\'t be a person in yer crew." << endl;
-			cin >> n;
+			cin.clear();
+			cin >> n >> m;
+			n += " " + m;
 		}
 		if (n == "R")
 		{
@@ -581,17 +585,22 @@ void edit_crew()
 	{
 		cout << "Enter a crew member\'s name to remove (Type R to return): ";
 		string n = "";
-		cin >> n;
-		while (n != "R" && find_crew_member(n))
+		string m = "";
+		cin >> n >> m;
+		n += " " + m;
+		while (n != "R" && !(find_crew_member(n)))
 		{
 			cout << "That ain\'t be a person in yer crew." << endl;
-			cin >> n;
+			cin.clear();
+			cin >> n >> m;
+			n += " " + m;
 		}
 		if (n == "R")
 		{
 			clear();
 			edit_crew();
 		}
+
 		else
 		{
 			CREW.erase(CREW.begin() + get_crew_member_index(n));
@@ -696,16 +705,6 @@ void status() //5
 	MY_SHIP.get_details();
 	cout << endl;
 	cout << "Crew size: " << CREW.size() << endl;
-	if (CREW.size() > 0)
-	{
-		cout << "Crew members: " << endl;
-		cout << endl;
-		for (int i = 0; i < CREW.size(); i++)
-		{
-			CREW.at(i).get_details();
-			cout << endl;
-		}
-	}
 	cout << endl;
 	cout << "(Type C to Continue) : ";
 	string input = "";
