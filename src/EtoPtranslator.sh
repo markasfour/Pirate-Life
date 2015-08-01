@@ -338,10 +338,7 @@ function FileTrans
 
 function GenerateInsult 
 {
-	if [ ! -d "./bin" ]; then
-		make > 0; rm 0
-	fi
-
+	
 	bin/insults.o | xclip -sel c -f
 	printf "${RED}Do ye want another? (Y/N)${NC}"
 	echo ""
@@ -359,6 +356,7 @@ function GenerateInsult
 
 #Main function
 make clean > 0; rm 0
+make > 0; rm 0
 clear
 
 #Variables
