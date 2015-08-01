@@ -66,7 +66,7 @@ void menu::battle()
 	cout << "                    Battle" << endl;
 	cout << "    --------------------------------------" << endl;
 	cout << "    |   1.    Fire the Cannons           |" << endl;
-	cout << "    |   2.    Board Their Ship           |" << endl;
+	cout << "    |   2.    Board Enemy Ship           |" << endl;
 	cout << "    |   3.    View Enemy Stats           |" << endl;
 	cout << "    |   4.    Check Yer Status           |" << endl;
 	cout << "    |   5.    Flee                       |" << endl;

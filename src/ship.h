@@ -65,7 +65,7 @@ class ship
 		int get_value() {return ((get_health() / get_max_health()) * get_max_value());}; //return calculated value of current ship
 		void add_to_capacity() {capacity++;} //add 1 to capacity when new crew member is added
 		void sub_from_capacity() {capacity--;} //sub 1 to capacity when crew member is removed
-
+		void damage_ship(int x) {health -= x;} //damage ship
 		void get_details(); //print out all current ship details
 		void buy(vessel name); //procedure to convert current ship to new ship
 

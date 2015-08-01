@@ -218,6 +218,10 @@ struct person
 	string get_gender(person p) {return p.gender;}
 	string get_type() {return type;}
 	string get_type(person p) {return p.type;}
+	int get_charisma() {return charisma;}
+	int get_intelligence() {return intelligence;}
+	int get_moral() {return moral;}
+	int get_strength() {return strength;}
 };
 
 #endif

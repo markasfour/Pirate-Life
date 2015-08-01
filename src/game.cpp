@@ -95,9 +95,120 @@ void tutorial_init()
 	clear();
 }
 
-void battle()
+double get_crew_attack()
 {
-	
+	double attack = 0;
+	if (CREW.size() > 0)
+	{
+		for (int i = 0; i < CREW.size(); i++)
+		{
+			attack += CREW.at(i).get_strength();
+			attack += CREW.at(i).get_moral();	
+		}
+	}
+	attack += 5; //your own attack
+	return attack;
+}
+
+double get_crew_accuracy()
+{
+	double accuracy = 0;
+	if (CREW.size() > 0)
+	{
+		for (int i = 0; i < CREW.size(); i++)
+		{
+			accuracy += CREW.at(i).get_intelligence();
+			accuracy += CREW.at(i).get_moral();	
+		}
+	}
+	accuracy += 5; //your own accuracy
+	return accuracy;
+}
+
+double get_crew_luck()
+{
+	double luck = 0;
+	if (CREW.size() > 0)
+	{
+		for (int i = 0; i < CREW.size(); i++)
+		{
+			luck += CREW.at(i).get_intelligence();
+			luck += CREW.at(i).get_charisma();	
+		}
+	}
+	luck += 5; //your own accuracy
+	return luck;
+}
+
+void battle(ship ENEMY)
+{
+	string input = "";
+	MENU.battle();
+	cin >> input;
+	while (input != "1" && input != "2" && input != "3" && input != "4" && input != "5")
+	{
+		cin >> input;
+	}
+	if (input == "1")
+	{
+		double damage = 0;
+		damage = get_crew_attack() * ((get_crew_accuracy() * ((get_crew_luck() - static_cast<double>((rand() % static_cast<int>(get_crew_luck())))) / get_crew_luck())) / get_crew_accuracy());
+		cout << "Yer cannons did " << damage << " damage to the enemy!" << endl;
+		ENEMY.damage_ship(damage);
+		input = "";
+		cout << "Type C to continue: ";
+		cin >> input;
+		while (input != "C")
+		{
+			cin >> input;
+		}
+		clear();
+		battle(ENEMY);
+	}
+	else if (input == "2")
+	{
+
+	}
+	else if (input == "3")
+	{
+		ENEMY.get_details();
+		input = "";
+		cout << "Type C to continue: ";
+		cin >> input;
+		while (input != "C")
+		{
+			cin >> input;
+		}
+		clear();
+		battle(ENEMY);
+	}
+	else if (input == "4")
+	{
+		clear();
+		status();
+		clear();
+		battle(ENEMY);
+	}
+	else if (input == "5")
+	{
+		if (rand() % 3 != 0)
+		{
+			cout << "Ye got away safely." << endl;
+		}
+		else
+		{
+			cout << "Their ship blocked yer path! ARRGH!" << endl;
+			input = "";
+			cout << "Type C to continue: ";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			clear();
+			battle(ENEMY);
+		}		
+	}
 }
 
 void prebattle(int i, ship ENEMY)
@@ -141,7 +252,7 @@ void prebattle(int i, ship ENEMY)
 	else if (input == "3")
 	{
 		clear();
-		battle();
+		battle(ENEMY);
 	}
 	else if (input == "4")
 	{
@@ -152,8 +263,15 @@ void prebattle(int i, ship ENEMY)
 		else
 		{
 			cout << "The ship blocked yer path! ARRGH! To battle!" << endl;
+			input = "";
+			cout << "Type C to continue: ";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
 			clear();
-			battle();
+			battle(ENEMY);
 		}
 	}
 }
@@ -187,7 +305,7 @@ void sail() //1
 			clear();
 			cout << "Ye got battered up by some stormy weather! ARRGH!" << endl;
 			injury = rand() % 3 + 1; //from 1 to 3
-			cout << "Health -" << injury;
+			cout << "Health -" << injury << endl;
 			HEALTH -= injury;
 			sail();
 		}
@@ -724,6 +842,33 @@ void status() //5
 	MY_SHIP.get_details();
 	cout << endl;
 	cout << "Crew size: " << CREW.size() << endl;
+	int soldier = 0;
+	int sailor = 0;
+	int seeker = 0;
+	int swindler = 0;
+	for (int i = 0; i < CREW.size(); i++)
+	{
+		if (CREW.at(i).get_type() == "Soldier")
+		{
+			soldier++;
+		}
+		else if (CREW.at(i).get_type() == "Sailor")
+		{
+			sailor++;
+		}
+		else if (CREW.at(i).get_type() == "Seeker")
+		{
+			seeker++;
+		}
+		else if (CREW.at(i).get_type() == "Swindler")
+		{
+			swindler ++;
+		}
+	}
+	cout << sailor << " Sailors, " << soldier << " Soldiers, " << seeker << " Seekers, " << swindler << " Swinlders" << endl;
+	cout << "Crew attack: " << get_crew_attack() << endl;
+	cout << "Crew accuracy: " << get_crew_accuracy() << endl;
+	cout << "Crew Luck: " << get_crew_luck() << endl;
 	cout << endl;
 	cout << "(Type C to Continue) : ";
 	string input = "";
