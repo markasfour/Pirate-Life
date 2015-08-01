@@ -2,6 +2,7 @@
 #define PEOPLE_H
 
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 //Vector of names
@@ -98,130 +99,114 @@ void populate_last()
 struct person
 {
 	private:
-		int charisma;
-		int intelligence;
-		int moral;
-		int strength;
-		string name;
+				string name;
 		string gender;
 		string type;
 		vector <string> types = {"Soldier", "Sailor", "Seeker", "Swindler"};
 
 	public:
-	person() //default constructor
-	{
-		int x = rand() % 2;
-		if (x)
+		int charisma;
+		int intelligence;
+		int moral;
+		int strength;
+
+		person() //default constructor
 		{
-			gender = "Male";
-			name = male_first.at(rand() % male_first.size()) + " " +
-				   last.at(rand() % last.size());
-			type = types.at(rand() % (types.size() - 1));
+			int x = rand() % 2;
+			if (x)
+			{
+				gender = "Male";
+				name = male_first.at(rand() % male_first.size()) + " " +
+				   	   last.at(rand() % last.size());
+				type = types.at(rand() % (types.size() - 1));
+			}
+			else
+			{
+				gender = "Female";
+				name = female_first.at(rand() % female_first.size()) +
+				   	   " " + last.at(rand() % last.size());
+				type = types.at(rand() % (types.size() - 1) + 1);
+			}
 		}
-		else
+		person(string g) //constructor with gender param
 		{
-			gender = "Female";
-			name = female_first.at(rand() % female_first.size()) +
-				   " " + last.at(rand() % last.size());
-			type = types.at(rand() % (types.size() - 1) + 1);
+			if (g == "Male")
+			{
+				gender = "Male";
+				name = male_first.at(rand() % male_first.size()) + " " +
+				   	   last.at(rand() % last.size());
+				type = types.at(rand() % (types.size() - 1));
+			}
+			else
+			{
+				gender = "Female";
+				name = female_first.at(rand() % female_first.size()) +
+				   	   " " + last.at(rand() % last.size());
+				type = types.at(rand() % (types.size() - 1) + 1);
+			}
 		}
-		if (type == "Soldier")
+		~person() {}; //destructor
+		person(const person & p) //copy constructor
 		{
-			charisma = 1;
-			intelligence = rand() % 5 + 1; //1 to 5
-			moral = rand() % 5 + 1; //1 to 5
-			strength = 5;
+			name = p.name;
+			gender = p.gender;
+			type = p.type;
+			charisma = p.charisma;
+			intelligence = p.intelligence;
+			moral = p.moral;
+			strength = p.strength;
 		}
-		else if (type == "Sailor")
+		void give_stats() //quick fix for stats issue
 		{
-			charisma = rand() % 5 + 1; //1 to 5
-			intelligence = 5;
-			moral = rand() % 5 + 1; //1 to 5
-			strength = rand() % 5 + 1; //1 to 5
+			if (this->type == "Soldier")
+			{
+				charisma = 1;
+				intelligence = 2;
+				moral = 4;
+				strength = 5;
+			}
+			else if (this->type == "Sailor")
+			{
+				charisma = 4;
+				intelligence = 5;
+				moral = 2;
+				strength = 3;
+			}
+			else if (this->type == "Seeker")
+			{
+				charisma = 3;
+				intelligence = 4; 
+				moral = 5;
+				strength = 2;
+			}
+			else if (this->type == "Swindler")
+			{
+				charisma = 5;
+				intelligence = 2;
+				moral = 3;
+				strength = 1;
+			}
 		}
-		else if (type == "Seeker")
+		void get_details() //print all of person's details
 		{
-			charisma = rand() % 5 + 1; //1 to 5
-			intelligence = rand() % 2 + 4; //4 to 5
-			moral = 5;
-			strength = rand() % 5 + 1; //1 to 5
+			cout << name << endl;
+			cout << "- " << gender << endl;
+			cout << "- " << type << endl;
+			cout << "- Strength: " << strength << endl;
+			cout << "- Moral: " << moral << endl;
+			cout << "- Intelligence: " << intelligence << endl;
+			cout << "- Charisma: " << charisma << endl;
 		}
-		else if (type == "Swindler")
-		{
-			charisma = 5;
-			intelligence = rand() % 5 + 1; //1 to 5
-			moral = rand() % 5 + 1; //1 to 5
-			strength = 1;
-		}
-	}
-	person(string g) //constructor with gender param
-	{
-		if (g == "Male")
-		{
-			gender = "Male";
-			name = male_first.at(rand() % male_first.size()) + " " +
-				   last.at(rand() % last.size());
-			type = types.at(rand() % (types.size() - 1));
-		}
-		else
-		{
-			gender = "Female";
-			name = female_first.at(rand() % female_first.size()) +
-				   " " + last.at(rand() % last.size());
-			type = types.at(rand() % (types.size() - 1) + 1);
-		}
-		if (g == "Female")
-		{
-			charisma = 1;
-			intelligence = rand() % 5 + 1; //1 to 5
-			moral = rand() % 5 + 1; //1 to 5
-			strength = 5;
-		}
-		else if (type == "Sailor")
-		{
-			charisma = rand() % 5 + 1; //1 to 5
-			intelligence = 5;
-			moral = rand() % 5 + 1; //1 to 5
-			strength = rand() % 5 + 1; //1 to 5
-		}
-		else if (type == "Seeker")
-		{
-			charisma = rand() % 5 + 1; //1 to 5
-			intelligence = rand() % 2 + 4; //4 to 5
-			moral = 5;
-			strength = rand() % 5 + 1; //1 to 5
-		}
-		else if (type == "Swindler")
-		{
-			charisma = 5;
-			intelligence = rand() % 5 + 1; //1 to 5
-			moral = rand() % 5 + 1; //1 to 5
-			strength = 1;
-		}
-	}
-	~person() {}; //destructor
-	person(const person & p) //copy constructor
-	{
-		name = p.name;
-		gender = p.gender;
-		type = p.type;
-	}
-	void get_details() //print all of person's details
-	{
-		cout << name << endl;
-		cout << "- " << gender << endl;
-		cout << "- " << type << endl;
-	}
-	string get_name() {return name;}
-	string get_name(person p) {return p.name;}
-	string get_gender() {return gender;}
-	string get_gender(person p) {return p.gender;}
-	string get_type() {return type;}
-	string get_type(person p) {return p.type;}
-	int get_charisma() {return charisma;}
-	int get_intelligence() {return intelligence;}
-	int get_moral() {return moral;}
-	int get_strength() {return strength;}
+		string get_name() {return name;}
+		string get_name(person p) {return p.name;}
+		string get_gender() {return gender;}
+		string get_gender(person p) {return p.gender;}
+		string get_type() {return type;}
+		string get_type(person p) {return p.type;}
+		int get_charisma() {return charisma;}
+		int get_intelligence() {return intelligence;}
+		int get_moral() {return moral;}
+		int get_strength() {return strength;}
 };
 
 #endif
