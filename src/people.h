@@ -105,7 +105,7 @@ struct person
 		string name;
 		string gender;
 		string type;
-		vector <string> types = {"Soldier", "Sailor", "Seeker", "Babe"};
+		vector <string> types = {"Soldier", "Sailor", "Seeker", "Swindler"};
 
 	public:
 	person() //default constructor
@@ -146,7 +146,7 @@ struct person
 			moral = 5;
 			strength = rand() % 5 + 1; //1 to 5
 		}
-		else if (type == "Babe")
+		else if (type == "Swindler")
 		{
 			charisma = 5;
 			intelligence = rand() % 5 + 1; //1 to 5
@@ -191,7 +191,7 @@ struct person
 			moral = 5;
 			strength = rand() % 5 + 1; //1 to 5
 		}
-		else if (type == "Babe")
+		else if (type == "Swindler")
 		{
 			charisma = 5;
 			intelligence = rand() % 5 + 1; //1 to 5

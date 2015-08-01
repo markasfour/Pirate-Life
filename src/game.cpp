@@ -95,6 +95,69 @@ void tutorial_init()
 	clear();
 }
 
+void battle()
+{
+	
+}
+
+void prebattle(int i, ship ENEMY)
+{
+	string input = "";
+	MENU.prebattle();
+
+	if (i == 1)
+	{
+		cout << "A commercial ship is just under the horizon. What would ye like to do?" << endl;
+	}
+	else if (i == 2)
+	{
+		cout << "A military ship is just under the horizon. What would ye like to do?" << endl;
+	}
+	cin >> input;
+	while (input != "1" && input != "2" && input != "3" && input != "4")
+	{
+		cin >> input;
+	}
+	if (input == "1")
+	{
+		ENEMY.get_details();
+		cout << endl;
+		cout << "Type C to continue: ";
+		cin >> input;
+		while (input != "C")
+		{
+			cin >> input;
+		}
+		clear();
+		prebattle(i, ENEMY);
+	}
+	else if (input == "2")
+	{
+		clear();
+		status();
+		clear();
+		prebattle(i, ENEMY);
+	}
+	else if (input == "3")
+	{
+		clear();
+		battle();
+	}
+	else if (input == "4")
+	{
+		if (rand() % 3 != 0)
+		{
+			cout << "Ye sailed passed their ship unharmed." << endl;
+		}
+		else
+		{
+			cout << "The ship blocked yer path! ARRGH! To battle!" << endl;
+			clear();
+			battle();
+		}
+	}
+}
+
 void sail() //1
 {
 	int next = 0;
@@ -201,59 +264,15 @@ void sail() //1
 		else if (next < 80)
 		{
 			clear();
-			cout << "Thar be a small ship up ahead. Would ye like to attack? (Y/N) " << endl;
-			input = "";
-			cin >> input;
-			while (input != "Y" && input != "N")
-			{
-				cin >> input;
-			}
-			if (input == "Y")
-			{
-				//battle
-			}
-			else if (input == "N")
-			{
-				cout << "Ye let the humble wee vessel be..." << endl;
-			}
+			ship ENEMY(rand() % ships.size());
+			prebattle(1, ENEMY);	
 			sail();
 		}
 		else
 		{
 			clear();
-			MENU.prebattle();
-			cout << "A military ship is just under the horizon. Would ye like to do?" << endl;
-			input = "";
-			cin >> input;
-			while (input != "1" && input != "2" && input != "3" && input != "4")
-			{
-				cin >> input;
-			}
-			if (input == "1")
-			{
-				//battle
-			}
-			else if (input == "2")
-			{
-				clear();
-				status();
-			}
-			else if (input == "3")
-			{
-
-			}
-			else if (input == "4")
-			{
-				if (next % 3 != 0)
-				{
-					cout << "Ye sailed passed their ship unharmed." << endl;
-				}
-				else
-				{
-					cout << "The ship blocked yer path! ARRGH! To battle!" << endl;
-					//battle
-				}
-			}
+			ship ENEMY(rand() % ships.size());
+			prebattle(2, ENEMY);	
 			sail();
 		}
 	}

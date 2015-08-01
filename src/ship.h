@@ -34,6 +34,9 @@ struct vessel
 	};
 };
 
+//Ships in ship yard
+vector <vessel> ships;
+
 class ship
 {
 	private:
@@ -43,6 +46,14 @@ class ship
 		
 	public:
 		ship() {health = current.max_health;}; //constructor
+		ship(int i)
+		{
+			current.change(ships.at(i).name,
+						   ships.at(i).max_health,
+						   ships.at(i).max_capacity,
+						   ships.at(i).max_value);
+			health = current.max_health;
+		}
 		~ship() {}; //destructor
 
 		string get_name() {return current.name;}; //return name of current ship
@@ -77,9 +88,6 @@ void ship::buy(vessel purchased)
 	capacity = purchased.max_capacity;
 	current.max_value = purchased.max_value;
 }
-
-//Ships in ship yard
-vector <vessel> ships;
 
 void populate_ships()
 {
