@@ -11,6 +11,10 @@ Use the most up-to-date version by running:
 
     git checkout v2
 
+To use a build that features a pirate game (still in development), run:
+
+	git checkout v2.5
+
 Execute the program by running the following in a terminal:
 
     src/EtoPtranslator.sh
@@ -29,6 +33,8 @@ Execute the program by running the following in a terminal:
 
 * Automatic pirate insult generator
 
+* NEWEST FEATURE (in progress): PIRATE GAME. This game is still in production. A very early game release is in v. 2.5
+
 ##Bugs and Limitations
 
 * Please report bugs here on GitHub under issues
@@ -37,4 +43,4 @@ Execute the program by running the following in a terminal:
 
 * Add to Pirate dictionary
 
-* Add additional language translation support (i.e. English to Old English)
+* Project will soon be renamed since this will be more than just a translator
