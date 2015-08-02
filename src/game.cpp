@@ -154,105 +154,68 @@ double get_crew_luck()
 
 void battle(ship ENEMY)
 {
-	string input = "";
-	MENU.battle();
-	cin >> input;
-	while (input != "1" && input != "2" && input != "3" && input != "4" && input != "5")
+	while (true)
 	{
+		string input = "";
+		MENU.battle();
 		cin >> input;
-	}
-	if (input == "1")
-	{
-		double damage = 0;
-		if ((rand() % static_cast<int>(get_crew_accuracy() * 10)) != 0)
-		{
-			if ((rand() % static_cast<int>(get_crew_luck() * 10)) < 2)
-			{
-				damage = get_crew_attack() * (1 + ((rand() % static_cast<int>(get_crew_luck() * 10)) / 10.0));
-			}
-			else if ((rand() % static_cast<int>(get_crew_luck() * 10)) < 4)
-			{
-				damage = get_crew_attack() * (1 - ((rand() % static_cast<int>(get_crew_luck() * 10)) / 10.0));
-			}
-			else
-			{
-				damage = get_crew_attack(); 
-			}
-		}
-		if (damage != 0)
-		{
-			cout << "Yer cannons did " << damage << " damage to the enemy!" << endl;
-		}
-		else
-		{
-			cout << "Yer cannons missed the ship! ARRGH!" << endl;
-		}
-		ENEMY.damage_ship(damage);
-		input = "";
-		cout << "Type C to continue: ";
-		cin >> input;
-		while (input != "C")
+		while (input != "1" && input != "2" && input != "3" && input != "4" && input != "5")
 		{
 			cin >> input;
 		}
-		clear();
-		battle(ENEMY);
-	}
-	else if (input == "2")
-	{
-		if (CREW.size() < 1)
+		if (input == "1")
 		{
-			cout << "Ye don\'t have any crew members to send over!" << endl;
-			input = "";
-			cout << "Type C to continue: ";
-			cin >> input;
-			while (input != "C")
+			double damage = 0;
+			if ((rand() % static_cast<int>(get_crew_accuracy() * 10)) != 0)
 			{
-				cin >> input;
-			}
-			clear();
-			battle(ENEMY);
-		}
-		else
-		{
-			cout << "How many crew member will ye send to fight?" << endl;
-			cout << "Ye have " << CREW.size() << " people in yer crew." << endl;
-			int n = 0;
-			int friendly = 0;
-			int foe = 0;
-
-			cin >> n;
-			while (n > CREW.size() && n < 1)
-			{
-				cout << "Ye can\'t send that many people!" << endl;
-				cin >> n;
-			}
-			cout << endl;
-			while (n > 0 && ENEMY.get_capacity() > 0)
-			{
-				if (rand() % 2 == 0)
+				if ((rand() % static_cast<int>(get_crew_luck() * 10)) < 2)
 				{
-					CREW.erase(CREW.begin() + (rand() % CREW.size()));
-					MY_SHIP.sub_from_capacity();
-					friendly++;
-					n--;
+					damage = get_crew_attack() * (1 + ((rand() % static_cast<int>(get_crew_luck() * 10)) / 10.0));
+				}
+				else if ((rand() % static_cast<int>(get_crew_luck() * 10)) < 4)
+				{
+					damage = get_crew_attack() * (1 - ((rand() % static_cast<int>(get_crew_luck() * 10)) / 10.0));
 				}
 				else
 				{
-					ENEMY.sub_from_capacity();
-					foe++;
+					damage = get_crew_attack(); 
 				}
 			}
-			if (n == 0)
+			if (damage != 0)
 			{
-				cout << "The enemy slaughtered yer crew! ARRGH!" << endl;
+				cout << "Yer cannons did " << damage << " damage to the enemy!" << endl;
+				if (damage >= 10)
+				{
+					int collateral = 0;
+					collateral = rand() % (static_cast<int>(damage) / 10);
+					if (collateral != 0 && rand() % 5 < 2)
+					{
+						cout << collateral << " enemies have been taken out collaterally! ARRGH!" << endl;
+						for (int i = 0; i < collateral; i++)
+						{
+							ENEMY.sub_from_capacity();
+						}
+					}
+				}
 			}
-			else if (ENEMY.get_capacity() == 0)
+			else
 			{
-				cout << "Yer crew has claimed victory over the enemy! ARRGH!" << endl;
+				cout << "Yer cannons missed the ship! ARRGH!" << endl;
 			}
-			cout << friendly << " friendlies killed." << endl;
-			cout << foe << " enemies killed." << endl;
+			ENEMY.damage_ship(damage);
+			if (ENEMY.get_health() <= 0 || ENEMY.get_capacity() <= 0)
+			{
+				cout << "Ye have won the battle! ARRGH!" << endl;
+				input = "";
+				cout << "Type C to continue: ";
+				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				clear();
+				break;
+			}
 			input = "";
 			cout << "Type C to continue: ";
 			cin >> input;
@@ -261,34 +224,88 @@ void battle(ship ENEMY)
 				cin >> input;
 			}
 			clear();
-			sail();	
+			continue;
 		}
-	}
-	else if (input == "3")
-	{
-		ENEMY.get_details();
-		input = "";
-		cout << "Type C to continue: ";
-		cin >> input;
-		while (input != "C")
+		else if (input == "2")
 		{
-			cin >> input;
+			if (CREW.size() < 1)
+			{
+				cout << "Ye don\'t have any crew members to send over!" << endl;
+				input = "";
+				cout << "Type C to continue: ";
+				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				clear();
+				continue;
+			}
+			else
+			{
+				cout << "How many crew member will ye send to fight?" << endl;
+				cout << "Ye have " << CREW.size() << " people in yer crew." << endl;
+				int n = 0;
+				int friendly = 0;
+				int foe = 0;
+
+				cin >> n;
+				while (n > CREW.size() && n < 1)
+				{
+					cout << "Ye can\'t send that many people!" << endl;
+					cin >> n;
+				}
+				cout << endl;
+				while (n > 0 && ENEMY.get_capacity() > 0)
+				{
+					if (rand() % 2 == 0)
+					{
+						CREW.erase(CREW.begin() + (rand() % CREW.size()));
+						MY_SHIP.sub_from_capacity();
+						friendly++;
+						n--;
+					}
+					else
+					{
+						ENEMY.sub_from_capacity();
+						foe++;
+					}
+				}
+				if (n == 0)
+				{
+					cout << "The enemy slaughtered yer crew! ARRGH!" << endl;
+					cout << friendly << " friendlies killed." << endl;
+					cout << foe << " enemies killed." << endl;
+					input = "";
+					cout << "Type C to continue: ";
+					cin >> input;
+					while (input != "C")
+					{
+						cin >> input;
+					}
+					clear();
+					continue;	
+				}
+				else if (ENEMY.get_capacity() == 0)
+				{
+					cout << "Yer crew has claimed victory over the enemy! ARRGH!" << endl;
+					cout << friendly << " friendlies killed." << endl;
+					cout << foe << " enemies killed." << endl;
+					input = "";
+					cout << "Type C to continue: ";
+					cin >> input;
+					while (input != "C")
+					{
+						cin >> input;
+					}
+					clear();
+					break;	
+				}
+			}
 		}
-		clear();
-		battle(ENEMY);
-	}
-	else if (input == "4")
-	{
-		clear();
-		status();
-		clear();
-		battle(ENEMY);
-	}
-	else if (input == "5")
-	{
-		if (rand() % 3 != 0)
+		else if (input == "3")
 		{
-			cout << "Ye got away safely." << endl;
+			ENEMY.get_details();
 			input = "";
 			cout << "Type C to continue: ";
 			cin >> input;
@@ -297,20 +314,44 @@ void battle(ship ENEMY)
 				cin >> input;
 			}
 			clear();
+			continue;
 		}
-		else
+		else if (input == "4")
 		{
-			cout << "Their ship blocked yer path! ARRGH!" << endl;
-			input = "";
-			cout << "Type C to continue: ";
-			cin >> input;
-			while (input != "C")
-			{
-				cin >> input;
-			}
 			clear();
-			battle(ENEMY);
-		}		
+			status();
+			clear();
+			continue;
+		}
+		else if (input == "5")
+		{
+			if (rand() % 3 != 0)
+			{
+				cout << "Ye got away safely." << endl;
+				input = "";
+				cout << "Type C to continue: ";
+				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				clear();
+				break;
+			}
+			else
+			{
+				cout << "Their ship blocked yer path! ARRGH!" << endl;
+				input = "";
+				cout << "Type C to continue: ";
+				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				clear();
+				continue;
+			}		
+		}
 	}
 }
 
