@@ -5,6 +5,7 @@
 #include "menu.h"
 #include "ship.h"
 #include "people.h"
+#include "animations.h"
 using namespace std;
 
 //global variables
@@ -28,13 +29,6 @@ void sail();
 void status();
 void interact();
 void edit_crew();
-
-//clear screen
-void clear() 
-{
-	// CSI[2J clears screen, CSI[H moves the cursor to top-left corner
-    cout << "\x1B[2J\x1B[H";
-}
 
 //used first time playing game
 bool init()
@@ -445,6 +439,9 @@ void sail() //1
 	
 	if (input == "1")
 	{
+		clear();
+		sail_away();
+		clear();
 		next = rand() % 100;
 		if (next < 20)
 		{
@@ -556,6 +553,8 @@ void sail() //1
 	}
 	else if (input == "3")
 	{
+		clear();
+		sail_back();
 		clear();
 	}
 }
@@ -991,7 +990,14 @@ void try_luck() //4
 	}
 	else
 	{
-		//do stuff
+		cout << "The tavern is under construction..." << endl;
+		cout << "(Type C to Continue) : ";
+		cin >> input;
+		while (input != "C")
+		{
+			cin >> input;
+		}
+		clear();
 	}
 }
 
@@ -1070,6 +1076,8 @@ bool game_play()
 	}
 	else if (input == "1")
 	{
+		clear();
+		sail_away();
 		clear();
 		sail();
 	}
