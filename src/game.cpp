@@ -199,7 +199,46 @@ void enemy_attack(ship ENEMY)
 	}
 }
 
-void battle(ship ENEMY)
+void victory(int x, ship ENEMY, bool commercial)
+{
+	int money = 0;
+	if (x == 1) //ship sunk
+	{
+		money = (rand() % ENEMY.get_max_value()) / 4;
+		if (commercial)
+		{
+			money = money * 2;
+		}
+		cout << "Ye were able to salvage some booty from the wreckage." << endl;
+		cout << "Wealth +" << money;
+		WEALTH += money;
+	}
+	else if (x == 2) //enemy crew eliminated but did not board ship
+	{
+		money = (rand() % ENEMY.get_max_value()) / 2; 
+		if (commercial)
+		{
+			money = money * 2;
+		}
+		cout << "Ye were able to salvage some booty from aboard their ship." << endl;
+		cout << "Wealth +" << money;
+		WEALTH += money;
+	}
+	else if (x == 3) //enemy crew eliminated by boarding the ship
+	{
+		money = (rand() % ENEMY.get_max_value()); 
+		if (commercial)
+		{
+			money = money * 2;
+		}
+		cout << "Ye were able to salvage the treasures aboard their ship." << endl;
+		cout << "Wealth +" << money;
+		WEALTH += money;
+	}
+	cout << endl;
+}
+
+void battle(ship ENEMY, bool commercial)
 {
 	while (true)
 	{
@@ -256,7 +295,20 @@ void battle(ship ENEMY)
 			ENEMY.damage_ship(damage);
 			if (ENEMY.get_health() <= 0 || ENEMY.get_capacity() <= 0)
 			{
+				int v = 0;
+				if (ENEMY.get_health() <= 0)
+				{
+					cout << "Ye have sunk the enemy ship!" << endl;
+					v = 1;
+				}
+				else if(ENEMY.get_capacity() <= 0)
+				{
+					cout << "Ye have eliminated the enemy crew!" << endl;
+					v = 2;
+				}
 				cout << "Ye have won the battle! ARRGH!" << endl;
+				cout << endl;
+				victory(v, ENEMY, commercial);
 				input = "";
 				cout << "Type C to continue: ";
 				cin >> input;
@@ -343,6 +395,8 @@ void battle(ship ENEMY)
 					cout << "Yer crew has claimed victory over the enemy! ARRGH!" << endl;
 					cout << friendly << " friendlies killed." << endl;
 					cout << foe << " enemies killed." << endl;
+					cout << endl;
+					victory(3, ENEMY, commercial);
 					input = "";
 					cout << "Type C to continue: ";
 					cin >> input;
@@ -411,16 +465,19 @@ void battle(ship ENEMY)
 
 void prebattle(int i, ship ENEMY)
 {
+	bool commercial;
 	string input = "";
 	MENU.prebattle();
 
 	if (i == 1)
 	{
 		cout << "A commercial ship is just under the horizon. What would ye like to do?" << endl;
+		commercial = true;
 	}
 	else if (i == 2)
 	{
 		cout << "A military ship is just under the horizon. What would ye like to do?" << endl;
+		commercial = false;
 	}
 	cin >> input;
 	while (input != "1" && input != "2" && input != "3" && input != "4")
@@ -450,7 +507,7 @@ void prebattle(int i, ship ENEMY)
 	else if (input == "3")
 	{
 		clear();
-		battle(ENEMY);
+		battle(ENEMY, commercial);
 	}
 	else if (input == "4")
 	{
@@ -477,7 +534,7 @@ void prebattle(int i, ship ENEMY)
 				cin >> input;
 			}
 			clear();
-			battle(ENEMY);
+			battle(ENEMY, commercial);
 		}
 	}
 }

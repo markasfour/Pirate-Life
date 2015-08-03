@@ -62,7 +62,10 @@ class ship
 		int get_max_capacity() {return current.max_capacity;}; //return max capacity of current ship
 		int get_capacity() {return capacity;}; //return current capacity of current ship
 		int get_max_value() {return current.max_value;}; //return max value of current ship
-		int get_value() {return ((get_health() / get_max_health()) * get_max_value());}; //return calculated value of current ship
+		int get_value() //return calculated value of current ship
+		{
+			return static_cast<int>((static_cast<double>(get_health()) / static_cast<double>(get_max_health())) * get_max_value());
+		}; 
 		void set_capacity(int x) {capacity = x;} //set ship's capacity
 		void add_to_capacity() {capacity++;} //add 1 to capacity when new crew member is added
 		void sub_from_capacity() {capacity--;} //sub 1 to capacity when crew member is removed
