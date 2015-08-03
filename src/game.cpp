@@ -100,7 +100,7 @@ int get_crew_attack()
 			attack += CREW.at(i).get_moral();	
 		}
 	}
-	attack += 5; //your own attack
+	attack += 10; //your own attack
 	return attack;
 }
 
@@ -146,6 +146,59 @@ double get_crew_luck()
 	return luck;
 }
 
+void enemy_attack(ship ENEMY)
+{
+	int damage = 0;
+	int attack = ENEMY.get_capacity() * 10;
+	for (int i = 0; i < ENEMY.get_capacity(); i++)
+	{
+		attack -= 4 * (rand() % 3);
+	}
+	damage = attack + (rand() % (attack / 5));
+	if (rand() % 10 < 8) //80% of the time
+	{
+		damage -= attack / 3;
+	}
+	cout << endl;
+	cout << "The enemy fired their cannons!" << endl;
+	cout << "The enemy did " << attack << " damage to yer ship! ARRGH!" << endl;
+	MY_SHIP.damage_ship(attack);
+	if (MY_SHIP.get_health() <= 0)
+	{
+		//gameover
+	}
+	if (attack >= 10 && CREW.size() > 0)
+	{
+		int collateral = 0;
+		collateral = rand() % (attack / 10);
+		if (collateral > CREW.size())
+		{
+			collateral = CREW.size();
+		}
+		if (collateral != 0 && rand() % 5 < 2)
+		{
+			cout << collateral << " of yer crew have been taken out collaterally! ARRGH!" << endl;
+			for (int i = 0; i < collateral; i++)
+			{
+				MY_SHIP.sub_from_capacity();
+				CREW.erase(CREW.begin() + (rand() % CREW.size()));
+			}
+		}
+	}
+	if (rand() % 10 < 2) //20% of the time
+	{
+		int injury = 0;
+		injury = rand() % 20 + 1; //from 1 to 20
+		HEALTH -= injury;
+		cout << "Ye have been wounded by the blast!" << endl;
+		cout << "Health -" << injury << endl;
+		if (HEALTH <= 0)
+		{
+			//gameover
+		}
+	}
+}
+
 void battle(ship ENEMY)
 {
 	while (true)
@@ -178,10 +231,14 @@ void battle(ship ENEMY)
 			if (damage != 0)
 			{
 				cout << "Yer cannons did " << damage << " damage to the enemy!" << endl;
-				if (damage >= 10)
+				if (damage >= 10 && ENEMY.get_capacity() > 0)
 				{
 					int collateral = 0;
 					collateral = rand() % (static_cast<int>(damage) / 10);
+					if (collateral > ENEMY.get_capacity())
+					{
+						collateral = ENEMY.get_capacity();
+					}
 					if (collateral != 0 && rand() % 5 < 2)
 					{
 						cout << collateral << " enemies have been taken out collaterally! ARRGH!" << endl;
@@ -210,6 +267,7 @@ void battle(ship ENEMY)
 				clear();
 				break;
 			}
+			enemy_attack(ENEMY);	
 			input = "";
 			cout << "Type C to continue: ";
 			cin >> input;
@@ -296,6 +354,7 @@ void battle(ship ENEMY)
 					break;	
 				}
 			}
+			enemy_attack(ENEMY);
 		}
 		else if (input == "3")
 		{
@@ -335,6 +394,7 @@ void battle(ship ENEMY)
 			else
 			{
 				cout << "Their ship blocked yer path! ARRGH!" << endl;
+				enemy_attack(ENEMY);
 				input = "";
 				cout << "Type C to continue: ";
 				cin >> input;
@@ -531,7 +591,8 @@ void sail() //1
 		else if (next < 80)
 		{
 			clear();
-			ship ENEMY(rand() % ships.size());
+			//cout << return_ship_index(MY_SHIP.get_name()) << endl;
+			ship ENEMY((rand() % (return_ship_index(MY_SHIP.get_name()) + 3)) % ships.size());
 			ENEMY.set_capacity((rand() % ENEMY.get_max_capacity()) + 1);
 			prebattle(1, ENEMY);	
 			sail();
@@ -539,7 +600,8 @@ void sail() //1
 		else
 		{
 			clear();
-			ship ENEMY(rand() % ships.size());
+			//cout << return_ship_index(MY_SHIP.get_name()) << endl;
+			ship ENEMY((rand() % (return_ship_index(MY_SHIP.get_name()) + 3)) % ships.size());
 			ENEMY.set_capacity((rand() % ENEMY.get_max_capacity()) + 1);
 			prebattle(2, ENEMY);	
 			sail();
@@ -579,7 +641,7 @@ void build_crew() //2
 	}
 	else if (input == "2")
 	{
-		cout << "Ye threatened the crowd..." << endl;
+		cout << "Ye threatened the crowd." << endl;
 		//TODO make random chance for people to join
 		
 		if (CREW.size() >= MY_SHIP.get_max_capacity())
@@ -684,7 +746,7 @@ void interact()
 	else if (input == "2")
 	{
 		//TODO make random chance to join
-		cout << "Ye insulted " << a.get_name() << "..." << endl;
+		cout << "Ye insulted " << a.get_name() << "." << endl;
 		if (CREW.size() < MY_SHIP.get_max_capacity())
 		{
 			CREW.push_back(a);
@@ -741,8 +803,8 @@ void interact()
 					cout << "How much would ye like to offer? " << endl;
 				} while (num > WEALTH && num <= 0);
 			}
-			WEALTH = WEALTH - num;
 			//TODO make random chance to join
+			WEALTH = WEALTH - num;
 			if (CREW.size() < MY_SHIP.get_max_capacity())
 			{
 				CREW.push_back(a);
@@ -1012,33 +1074,36 @@ void status() //5
 	MY_SHIP.get_details();
 	cout << endl;
 	cout << "Crew size: " << CREW.size() << endl;
-	int soldier = 0;
-	int sailor = 0;
-	int seeker = 0;
-	int swindler = 0;
-	for (int i = 0; i < CREW.size(); i++)
+	if (CREW.size() != 0)
 	{
-		if (CREW.at(i).get_type() == "Soldier")
+		int soldier = 0;
+		int sailor = 0;
+		int seeker = 0;
+		int swindler = 0;
+		for (int i = 0; i < CREW.size(); i++)
 		{
-			soldier++;
+			if (CREW.at(i).get_type() == "Soldier")
+			{
+				soldier++;
+			}
+			else if (CREW.at(i).get_type() == "Sailor")
+			{
+				sailor++;
+			}
+			else if (CREW.at(i).get_type() == "Seeker")
+			{
+				seeker++;
+			}
+			else if (CREW.at(i).get_type() == "Swindler")
+			{
+				swindler ++;
+			}
 		}
-		else if (CREW.at(i).get_type() == "Sailor")
-		{
-			sailor++;
-		}
-		else if (CREW.at(i).get_type() == "Seeker")
-		{
-			seeker++;
-		}
-		else if (CREW.at(i).get_type() == "Swindler")
-		{
-			swindler ++;
-		}
+		cout << sailor << " Sailors, " << soldier << " Soldiers, " << seeker << " Seekers, " << swindler << " Swinlders" << endl;
+		cout << "Crew attack: " << static_cast<int>(get_crew_attack()) << endl;
+		cout << "Crew accuracy: " << get_crew_accuracy() * 100 << "%" << endl;
+		cout << "Crew Luck: " << get_crew_luck() * 100 << "%" << endl;
 	}
-	cout << sailor << " Sailors, " << soldier << " Soldiers, " << seeker << " Seekers, " << swindler << " Swinlders" << endl;
-	cout << "Crew attack: " << get_crew_attack() << endl;
-	cout << "Crew accuracy: " << get_crew_accuracy() << endl;
-	cout << "Crew Luck: " << get_crew_luck() << endl;
 	cout << endl;
 	cout << "(Type C to Continue) : ";
 	string input = "";
