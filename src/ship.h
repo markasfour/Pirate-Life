@@ -89,7 +89,6 @@ void ship::buy(vessel purchased)
 	current.max_health = purchased.max_health;
 	health = current.max_health;
 	current.max_capacity = purchased.max_capacity;
-	capacity = purchased.max_capacity;
 	current.max_value = purchased.max_value;
 }
 

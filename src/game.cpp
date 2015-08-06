@@ -1068,26 +1068,68 @@ void ship_yard() //3
 			cout << i + 1 << ". " << ships.at(i).name << endl;
 		}
 		cout << endl;
-		cout << "Which vessel woul\' ye like to buy?";
+		cout << "Which vessel woul\' ye like to buy? (Enter 0 to leave)";
 		int num = 0;
 		cin >> num;
-		while(num < 1 && num > 16)
+		while(num < 0 && num > 16)
 		{
 			cin >> num;
 		}
-
-		clear();
-		cout << ships.at(num - 1).name << endl;
-		cout << "Max Health: " << ships.at(num - 1).max_health << endl;
-		cout << "Max Capacity: " << ships.at(num - 1).max_capacity << endl;
-		cout << "Price: " << ships.at(num - 1).max_value << endl;
-		cout << endl;
-		cout << "Type C to Continue: ";
-		input = "";
-		cin >> input;
-		while (input != "C")
+		if (num == 0)
 		{
-			cin >> input;
+			clear();
+		}
+		else
+		{
+			clear();
+			cout << ships.at(num - 1).name << endl;
+			cout << "Max Health: " << ships.at(num - 1).max_health << endl;
+			cout << "Max Capacity: " << ships.at(num - 1).max_capacity << endl;
+			cout << "Price: " << ships.at(num - 1).max_value << endl;
+			cout << endl;
+			if (ships.at(num - 1).max_value > WEALTH)
+			{
+				cout << "Ye cannot afford this ship." << endl;
+				cout << "Type C to Continue: ";
+				input = "";
+				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				clear();
+				ship_yard();
+			}
+			else
+			{
+				cout << "Be ye sure ye would like to buy this ship? (Y/N)" << endl;
+				input = "";
+				cin >> input;
+				while (input != "Y" && input != "N")
+				{
+					cin >> input;
+				}
+				if (input == "Y")
+				{
+					WEALTH -= ships.at(num - 1).max_value;
+					MY_SHIP.buy(ships.at(num - 1));
+					cout << "ARRGH! Ye have bought the " << MY_SHIP.get_name() << endl;
+					cout << endl;
+					cout << "Type C to Continue: ";
+					input = "";
+					cin >> input;
+					while (input != "C")
+					{
+						cin >> input;
+					}
+					clear();
+				}
+				else if (input == "N")
+				{
+					clear();
+					ship_yard();
+				}
+			}
 		}
 	}
 }
