@@ -71,8 +71,8 @@ class ship
 		void sub_from_capacity() {capacity--;} //sub 1 to capacity when crew member is removed
 		void damage_ship(int x) {health -= x;} //damage ship
 		void get_details(); //print out all current ship details
-		void buy(vessel name); //procedure to convert current ship to new ship
-
+		void buy(vessel name); //procedure to convert current ship to new ship after ship yard purchase
+		void claim(ship p); //procedure to convert current ship to new ship after battle
 };
 
 void ship::get_details()
@@ -90,6 +90,15 @@ void ship::buy(vessel purchased)
 	health = current.max_health;
 	current.max_capacity = purchased.max_capacity;
 	current.max_value = purchased.max_value;
+}
+
+void ship::claim(ship p)
+{
+	current.name = p.get_name();
+	current.max_health = p.get_max_health();
+	health = p.get_health();
+	current.max_capacity = p.get_max_capacity();
+	current.max_value = p.get_max_value();
 }
 
 void populate_ships()

@@ -223,6 +223,29 @@ void victory(int x, ship ENEMY, bool commercial)
 		cout << "Ye were able to salvage some booty from aboard their ship." << endl;
 		cout << "Wealth +" << money;
 		WEALTH += money;
+		cout << endl;
+		cout << "Would ye like to claim the enemy ship as yer own? (Y/N)" << endl;
+		string input = "";
+		cin >> input;
+		while (input != "Y" && input != "N")
+		{
+			cin >> input;
+		}
+		if (input == "Y")
+		{
+			MY_SHIP.claim(ENEMY);
+			if (CREW.size() > MY_SHIP.get_max_capacity())
+			{
+				int i = 0;
+				while (CREW.size() > MY_SHIP.get_max_capacity())
+				{
+					CREW.erase(CREW.begin() + CREW.size() - 1);
+					i++;
+				}
+				cout << i << " of yer crew were abandoned." << endl;
+			}
+			cout << "Ye have claimed the " << MY_SHIP.get_name() << endl;
+		}
 	}
 	else if (x == 3) //enemy crew eliminated by boarding the ship
 	{
@@ -234,6 +257,29 @@ void victory(int x, ship ENEMY, bool commercial)
 		cout << "Ye were able to salvage the treasures aboard their ship." << endl;
 		cout << "Wealth +" << money;
 		WEALTH += money;
+		cout << endl;
+		cout << "Would ye like to claim the enemy ship as yer own? (Y/N)" << endl;
+		string input = "";
+		cin >> input;
+		while (input != "Y" && input != "N")
+		{
+			cin >> input;
+		}
+		if (input == "Y")
+		{
+			MY_SHIP.claim(ENEMY);
+			if (CREW.size() > MY_SHIP.get_max_capacity())
+			{
+				int i = 0;
+				while (CREW.size() > MY_SHIP.get_max_capacity())
+				{
+					CREW.erase(CREW.begin() + CREW.size() - 1);
+					i++;
+				}
+				cout << i << " of yer crew were abandoned." << endl;
+			}
+		}
+		cout << "Ye have claimed the " << MY_SHIP.get_name() << endl;
 	}
 	cout << endl;
 }
