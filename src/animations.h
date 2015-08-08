@@ -79,4 +79,26 @@ void sail_back()
 	}
 }
 
+void game_over()
+{
+	if (ANIMATE)
+	{
+		cout << "   _____" << endl;
+		cout << "  / ____|" << endl;
+		cout << " | |  __  __ _ _ __ ___   ___" << endl;
+		cout << " | | |_ |/ _` | '_ ` _ \\ / _ \\" << endl;
+		cout << " | |__| | (_| | | | | | |  __/" << endl;
+		cout << "  \\_____|\\__,_|_| |_| |_|\\___|" << endl;
+		cout << endl;
+		sleep(1);
+		cout << "  ____ " << endl;
+		cout << " / __ \\" << endl;
+		cout << "| |  | |_   _____ _ __" << endl;
+		cout << "| |  | \\ \\ / / _ \\ '__|" << endl;
+		cout << "| |__| |\\ V /  __/ |" << endl;
+		cout << " \\____/  \\_/ \\___|_|" << endl;
+		cout << endl;
+	}
+}
+
 #endif

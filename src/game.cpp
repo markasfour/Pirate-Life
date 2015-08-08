@@ -13,6 +13,7 @@ using namespace std;
 int HEALTH = 100;
 int WEALTH = 0;
 string NAME;
+bool GHOST = false;
 
 //Main character's ship
 ship MY_SHIP;
@@ -87,6 +88,31 @@ void tutorial_init()
 		cin >> input;
 	}
 	clear();
+}
+
+void end_game()
+{
+	if (!GHOST)
+	{
+		GHOST = true;
+		game_over();
+		cout << NAME << ", yer fate has been sealed. Ye have died. ARRGH!" << endl;
+		cout << "Would ye like to continue playing as a ghost? (Y/N)" << endl;
+		string input = "";
+		cin >> input;
+		while (input != "Y" && input != "N")
+		{
+			cin >> input;
+		}
+		if (input == "N")
+		{
+			exit(0);
+		}
+		else if (input == "Y")
+		{
+			NAME += " (Ghost)";
+		}
+	}
 }
 
 int get_crew_attack()
@@ -165,7 +191,8 @@ void enemy_attack(ship ENEMY)
 	MY_SHIP.damage_ship(attack);
 	if (MY_SHIP.get_health() <= 0)
 	{
-		//gameover
+		cout << "The enemy has sunk yer ship!" << endl;
+		end_game();
 	}
 	if (attack >= 10 && CREW.size() > 0)
 	{
@@ -194,7 +221,7 @@ void enemy_attack(ship ENEMY)
 		cout << "Health -" << injury << endl;
 		if (HEALTH <= 0)
 		{
-			//gameover
+			end_game();
 		}
 	}
 }
