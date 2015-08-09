@@ -28,8 +28,8 @@ void menu::land()
 	cout << "    --------------------------------------" << endl;
 	cout << "    |   1.    Navigate the Seas          |" << endl;
 	cout << "    |   2.    Build a Crew               |" << endl;
-	cout << "    |   3.    Find a Ship                |" << endl;
-	cout << "    |   4.    Try Yer Luck               |" << endl;
+	cout << "    |   3.    Ship Yard                  |" << endl;
+	cout << "    |   4.    Local Tavern               |" << endl;
 	cout << "    |   5.    Check Yer Satus            |" << endl;
 	cout << "    |   6.    Save                       |" << endl;
 	cout << "    --------------------------------------" << endl;

@@ -78,7 +78,7 @@ void tutorial_init()
 	MENU.land();
 	cout << endl;
 	cout << "Yer objective be to gain as much wealth as possible before death be yer fate! ARRGH" << endl;
-	cout << "Upgrading yer ships, growin\' yer crew, and tryin\' yer luck can help yer chances while sailin\' the seas." << endl;
+	cout << "Upgrading yer ships, growin\' yer crew, and visitin\' the tavern can help yer chances while sailin\' the seas." << endl;
 	cout << endl;
 	cout << "Ye will start off with the " << MY_SHIP.get_name() << " as yer vessel, a crew of size 0, a wealth of $0, and a health of 100 points." << endl;
 	cout << "Best of luck to ye!" << endl;
