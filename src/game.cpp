@@ -14,6 +14,7 @@ int HEALTH = 100;
 int WEALTH = 0;
 string NAME;
 bool GHOST = false;
+bool OWN_SHIP = true;
 
 //Main character's ship
 ship MY_SHIP;
@@ -212,7 +213,7 @@ void enemy_attack(ship ENEMY)
 			}
 		}
 	}
-	if (rand() % 10 < 2) //20% of the time
+	if (rand() % 10 < 3) //20% of the time
 	{
 		int injury = 0;
 		injury = rand() % 20 + 1; //from 1 to 20
@@ -305,8 +306,8 @@ void victory(int x, ship ENEMY, bool commercial)
 				}
 				cout << i << " of yer crew were abandoned." << endl;
 			}
+			cout << "Ye have claimed the " << MY_SHIP.get_name() << endl;
 		}
-		cout << "Ye have claimed the " << MY_SHIP.get_name() << endl;
 	}
 	cout << endl;
 }
@@ -614,140 +615,181 @@ void prebattle(int i, ship ENEMY)
 
 void sail() //1
 {
-	int next = 0;
-	int injury = 0;
-	int treasure = 0;
-	
-	cout << "Ye be sailin\' the Seven Seas! ARRGH!" << endl;
-	MENU.sea();
-	cout << "What woul\' ye like to do, capt\'n " << NAME << "? " << endl;
 	string input = "";
-	while (input != "1" && input != "2" && input != "3")
+	if (!OWN_SHIP)
 	{
-		cin >> input;
-	}
-	
-	if (input == "1")
-	{
-		clear();
-		sail_away();
-		clear();
-		next = rand() % 100;
-		if (next < 20)
-		{
-			clear();
-			cout << "It be smooth sailin\'." << endl;
-			sail();
-		}
-		else if (next < 30)
-		{
-			clear();
-			cout << "Ye got battered up by some stormy weather! ARRGH!" << endl;
-			injury = rand() % 3 + 1; //from 1 to 3
-			cout << "Health -" << injury << endl;
-			HEALTH -= injury;
-			sail();
-		}
-		else if (next < 45)
-		{
-			clear();
-			if (CREW.size() > 1)
+		cout << "Ye need a ship to sail the seas!" << endl;
+		input = "";
+			cout << "Type C to continue: ";
+			cin >> input;
+			while (input != "C")
 			{
-				if (next % 3 == 0)
+				cin >> input;
+			}
+		clear();
+	}
+	else if (OWN_SHIP)
+	{
+		int next = 0;
+		int injury = 0;
+		int treasure = 0;
+		
+		cout << "Ye be sailin\' the Seven Seas! ARRGH!" << endl;
+		MENU.sea();
+		cout << "What woul\' ye like to do, capt\'n " << NAME << "? " << endl;
+		while (input != "1" && input != "2" && input != "3")
+		{
+			cin >> input;
+		}
+		
+		if (input == "1")
+		{
+			clear();
+			sail_away();
+			clear();
+			next = rand() % 100;
+			if (next < 20)
+			{
+				clear();
+				cout << "It be smooth sailin\'." << endl;
+				sail();
+			}
+			else if (next < 30)
+			{
+				clear();
+				cout << "Ye got battered up by some stormy weather! ARRGH!" << endl;
+				injury = rand() % 3 + 1; //from 1 to 3
+				cout << "Health -" << injury << endl;
+				HEALTH -= injury;
+				if (HEALTH <= 0)
 				{
-					cout << "Yer crew came down wit\' scurvy! ARRGH!" << endl;
-					injury = rand() % 5 + 5; //from 5 to 10
-					cout << "Health -" << injury << endl;
-					HEALTH -= injury;
+					end_game();
 				}
-				else if (next % 3 == 1)
+				sail();
+			}
+			else if (next < 45)
+			{
+				clear();
+				if (CREW.size() > 1)
 				{
-					cout << "Yer crew started a fight on board yer ship! Them scalleywags!" << endl;
-					injury = rand() % 2 + 5; //from 2 to 7
-					cout << "Health -" << injury << endl;
-					HEALTH -= injury;
+					if (next % 3 == 0)
+					{
+						cout << "Yer crew came down wit\' scurvy! ARRGH!" << endl;
+						injury = rand() % 5 + 5; //from 5 to 10
+						cout << "Health -" << injury << endl;
+						HEALTH -= injury;
+						if (HEALTH <= 0)
+						{
+							end_game();
+						}
+					}
+					else if (next % 3 == 1)
+					{
+						cout << "Yer crew started a fight on board yer ship! Them scalleywags!" << endl;
+						injury = rand() % 2 + 5; //from 2 to 7
+						cout << "Health -" << injury << endl;
+						HEALTH -= injury;
+						if (HEALTH <= 0)
+						{
+							end_game();
+						}
+					}
+					else
+					{
+						cout << "Yer crew didn\'t get any shut eye!" << endl;
+						injury = 1;
+						cout << "Health -" << injury << endl;
+						HEALTH -= injury;
+						if (HEALTH <= 0)
+						{
+							end_game();
+						}
+					}
 				}
 				else
 				{
-					cout << "Yer crew didn\'t get any shut eye!" << endl;
-					injury = 1;
-					cout << "Health -" << injury << endl;
-					HEALTH -= injury;
+					clear();
+					if (next % 3 == 0)
+					{
+						cout << "Ye came down wit\' scurvy! ARRGH!" << endl;
+						injury = rand() % 5 + 5; //from 5 to 10
+						cout << "Health -" << injury << endl;
+						HEALTH -= injury;
+						if (HEALTH <= 0)
+						{
+							end_game();
+						}
+					}
+					else if (next % 3 == 1)
+					{
+						cout << "Ye got sea sick from some rough tides!" << endl;
+						injury = rand() % 2 + 5; //from 2 to 7
+						cout << "Health -" << injury << endl;
+						HEALTH -= injury;
+						if (HEALTH <= 0)
+						{
+							end_game();
+						}
+					}
+					else
+					{
+						cout << "Yer couldn\'t get any shut eye!" << endl;
+						injury = 1;
+						cout << "Health -" << injury << endl;
+						HEALTH -= injury;
+						if (HEALTH <= 0)
+						{
+							end_game();
+						}
+					}
 				}
+				sail();
+			}
+			else if (next < 60)
+			{
+				clear();
+				cout << "Ye came across some floatin\' treasure!" << endl;
+				if (next % 2 == 0)
+				{
+					treasure = rand() % 10 + 1 + 5; //from 5 to 15
+				}
+				else 
+				{
+					treasure = rand() % 5 + 1; //from 1 to 5
+				}
+				cout << "Wealth +" << treasure << endl;
+				WEALTH += treasure;
+				sail();
+			}
+			else if (next < 80)
+			{
+				clear();
+				ship ENEMY((rand() % (return_ship_index(MY_SHIP.get_name()) + 3)) % ships.size());
+				ENEMY.set_capacity((rand() % ENEMY.get_max_capacity()) + 1);
+				prebattle(1, ENEMY);	
+				sail();
 			}
 			else
 			{
 				clear();
-				if (next % 3 == 0)
-				{
-					cout << "Ye came down wit\' scurvy! ARRGH!" << endl;
-					injury = rand() % 5 + 5; //from 5 to 10
-					cout << "Health -" << injury << endl;
-					HEALTH -= injury;
-				}
-				else if (next % 3 == 1)
-				{
-					cout << "Ye got sea sick from some rough tides!" << endl;
-					injury = rand() % 2 + 5; //from 2 to 7
-					cout << "Health -" << injury << endl;
-					HEALTH -= injury;
-				}
-				else
-				{
-					cout << "Yer couldn\'t get any shut eye!" << endl;
-					injury = 1;
-					cout << "Health -" << injury << endl;
-					HEALTH -= injury;
-				}
+				ship ENEMY((rand() % (return_ship_index(MY_SHIP.get_name()) + 3)) % ships.size());
+				ENEMY.set_capacity((rand() % ENEMY.get_max_capacity()) + 1);
+				prebattle(2, ENEMY);	
+				sail();
 			}
-			sail();
 		}
-		else if (next < 60)
+		else if (input == "2")
 		{
 			clear();
-			cout << "Ye came across some floatin\' treasure!" << endl;
-			if (next % 2 == 0)
-			{
-				treasure = rand() % 10 + 1 + 5; //from 5 to 15
-			}
-			else 
-			{
-				treasure = rand() % 5 + 1; //from 1 to 5
-			}
-			cout << "Wealth +" << treasure << endl;
-			WEALTH += treasure;
+			status();
 			sail();
 		}
-		else if (next < 80)
+		else if (input == "3")
 		{
 			clear();
-			//cout << return_ship_index(MY_SHIP.get_name()) << endl;
-			ship ENEMY((rand() % (return_ship_index(MY_SHIP.get_name()) + 3)) % ships.size());
-			ENEMY.set_capacity((rand() % ENEMY.get_max_capacity()) + 1);
-			prebattle(1, ENEMY);	
-			sail();
-		}
-		else
-		{
+			sail_back();
 			clear();
-			//cout << return_ship_index(MY_SHIP.get_name()) << endl;
-			ship ENEMY((rand() % (return_ship_index(MY_SHIP.get_name()) + 3)) % ships.size());
-			ENEMY.set_capacity((rand() % ENEMY.get_max_capacity()) + 1);
-			prebattle(2, ENEMY);	
-			sail();
 		}
-	}
-	else if (input == "2")
-	{
-		clear();
-		status();
-		sail();
-	}
-	else if (input == "3")
-	{
-		clear();
-		sail_back();
-		clear();
 	}
 }
 
@@ -767,52 +809,97 @@ void build_crew() //2
 	if (input == "1")
 	{
 		clear();
-		interact();
+		if (!OWN_SHIP)
+		{
+			cout << "Ye need a ship to recruit new crew members!" << endl;
+			cout << "Type C to Continue: ";
+			input = "";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			clear();
+		}
+		else if (OWN_SHIP)
+		{
+			interact();
+		}
 	}
 	else if (input == "2")
 	{
-		cout << "Ye threatened the crowd." << endl;
-		//TODO make random chance for people to join
-		
-		if (CREW.size() >= MY_SHIP.get_max_capacity())
+		if (!OWN_SHIP)
 		{
-			cout << "Yer vessel is already full!" << endl;
-			cout << "Ye need a bigger ship to expand yer crew!" << endl;
+			cout << "Ye need a ship to recruit new crew members!" << endl;
+			cout << "Type C to Continue: ";
 			input = "";
-			cout << "Type C to continue: ";
 			cin >> input;
 			while (input != "C")
 			{
 				cin >> input;
 			}
-			build_crew();
+			clear();
 		}
-		else
+		else if (OWN_SHIP)
 		{
-			int crowd = (rand() % (MY_SHIP.get_max_capacity() - MY_SHIP.get_capacity()) % 5) + 1;
-			for (int i = 0; i < crowd; i++)
+			cout << "Ye threatened the crowd." << endl;
+			//TODO make random chance for people to join
+			
+			if (CREW.size() >= MY_SHIP.get_max_capacity())
 			{
-				person a;
-				a.give_stats();
-				CREW.push_back(a);
-				MY_SHIP.add_to_capacity();
-				cout << a.get_name() << " is intimidated by ye." << endl;
-				cout << a.get_name() << " has joined yer crew! ARRGH!" << endl;
-			}
-			input = "";
-			cout << "Type C to continue: ";
-			cin >> input;
-			while (input != "C")
-			{
+				cout << "Yer vessel is already full!" << endl;
+				cout << "Ye need a bigger ship to expand yer crew!" << endl;
+				input = "";
+				cout << "Type C to continue: ";
 				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				build_crew();
 			}
-			build_crew();
+			else
+			{
+				int crowd = (rand() % (MY_SHIP.get_max_capacity() - MY_SHIP.get_capacity()) % 5) + 1;
+				for (int i = 0; i < crowd; i++)
+				{
+					person a;
+					a.give_stats();
+					CREW.push_back(a);
+					MY_SHIP.add_to_capacity();
+					cout << a.get_name() << " is intimidated by ye." << endl;
+					cout << a.get_name() << " has joined yer crew! ARRGH!" << endl;
+				}
+				input = "";
+				cout << "Type C to continue: ";
+				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				build_crew();
+			}
 		}
 	}
 	else if (input == "3")
 	{
 		clear();
-		edit_crew();	
+		if (!OWN_SHIP || CREW.size() == 0)
+		{
+			cout << "Ye don\'t have any crew members!" << endl;
+			cout << "Type C to Continue: ";
+			input = "";
+			cin >> input;
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			clear(); 
+		}
+		else
+		{
+			edit_crew();	
+		}
 	}
 	else if (input == "4")
 	{
@@ -1134,35 +1221,95 @@ void ship_yard() //3
 	else
 	{
 		cout << "Ahoy thar! Welcome to the ship yard!" << endl;
+		MENU.ship_yard();
 		cout << endl;
+		input = "";
+		cin >> input;
+		while (input != "1" && input != "2" && input != "3" && input != "4")
+		{
+			cin >> input;
+		}
 		//print out ships
-		for (int i = 0; i < ships.size(); i++)
-		{
-			cout << i + 1 << ". " << ships.at(i).name << endl;
-		}
-		cout << endl;
-		cout << "Which vessel woul\' ye like to buy? (Enter 0 to leave)";
-		int num = 0;
-		cin >> num;
-		while(num < 0 && num > 16)
-		{
-			cin >> num;
-		}
-		if (num == 0)
+		if (input == "1")
 		{
 			clear();
-		}
-		else
-		{
-			clear();
-			cout << ships.at(num - 1).name << endl;
-			cout << "Max Health: " << ships.at(num - 1).max_health << endl;
-			cout << "Max Capacity: " << ships.at(num - 1).max_capacity << endl;
-			cout << "Price: " << ships.at(num - 1).max_value << endl;
-			cout << endl;
-			if (ships.at(num - 1).max_value > WEALTH)
+			for (int i = 0; i < ships.size(); i++)
 			{
-				cout << "Ye cannot afford this ship." << endl;
+				cout << i + 1 << ". " << ships.at(i).name << endl;
+			}
+			cout << endl;
+			cout << "Which vessel woul\' ye like to buy? (Enter 0 to leave)";
+			int num = 0;
+			cin >> num;
+			while(num < 0 && num > 16)
+			{
+				cin >> num;
+			}
+			if (num == 0)
+			{
+				clear();
+			}
+			else
+			{
+				clear();
+				cout << ships.at(num - 1).name << endl;
+				cout << "Max Health: " << ships.at(num - 1).max_health << endl;
+				cout << "Max Capacity: " << ships.at(num - 1).max_capacity << endl;
+				cout << "Price: " << ships.at(num - 1).max_value << endl;
+				cout << endl;
+				if (ships.at(num - 1).max_value > WEALTH)
+				{
+					cout << "Ye cannot afford this ship." << endl;
+					cout << "Type C to Continue: ";
+					input = "";
+					cin >> input;
+					while (input != "C")
+					{
+						cin >> input;
+					}
+					clear();
+					ship_yard();
+				}
+				else
+				{
+					cout << "Be ye sure ye would like to buy this ship? (Y/N)" << endl;
+					input = "";
+					cin >> input;
+					while (input != "Y" && input != "N")
+					{
+						cin >> input;
+					}
+					if (input == "Y")
+					{
+						WEALTH -= ships.at(num - 1).max_value;
+						MY_SHIP.buy(ships.at(num - 1));
+						OWN_SHIP = true;
+						cout << "ARRGH! Ye have bought the " << MY_SHIP.get_name() << endl;
+						cout << endl;
+						cout << "Type C to Continue: ";
+						input = "";
+						cin >> input;
+						while (input != "C")
+						{
+							cin >> input;
+						}
+						clear();
+						ship_yard();
+					}
+					else if (input == "N")
+					{
+						clear();
+						ship_yard();
+					}
+				}
+			}
+		}
+		else if (input == "2")
+		{
+			if (!OWN_SHIP)
+			{
+				clear();
+				cout << "Ye don\'t own a ship to repair a ship!" << endl;
 				cout << "Type C to Continue: ";
 				input = "";
 				cin >> input;
@@ -1173,9 +1320,32 @@ void ship_yard() //3
 				clear();
 				ship_yard();
 			}
-			else
+			else if (OWN_SHIP)
 			{
-				cout << "Be ye sure ye would like to buy this ship? (Y/N)" << endl;
+				//TODO
+			}
+		}
+		else if (input == "3")
+		{
+			clear();
+			if (!OWN_SHIP)
+			{
+				cout << "Ye need to own a ship to sell a ship!" << endl;
+				cout << "Type C to Continue: ";
+				input = "";
+				cin >> input;
+				while (input != "C")
+				{
+					cin >> input;
+				}
+				clear();
+				ship_yard();
+			}
+			else if (OWN_SHIP)
+			{
+				cout << "Sellin\' yer " << MY_SHIP.get_name() << " will give ye +" << MY_SHIP.get_value() << " Wealth." << endl;
+				cout << "Warning: If ye sell yer ship, ye will lose yer crew." << endl;
+				cout << "Be ye sure ye wana sell the " << MY_SHIP.get_name() << "? (Y/N) " << endl;
 				input = "";
 				cin >> input;
 				while (input != "Y" && input != "N")
@@ -1184,10 +1354,16 @@ void ship_yard() //3
 				}
 				if (input == "Y")
 				{
-					WEALTH -= ships.at(num - 1).max_value;
-					MY_SHIP.buy(ships.at(num - 1));
-					cout << "ARRGH! Ye have bought the " << MY_SHIP.get_name() << endl;
-					cout << endl;
+					WEALTH += MY_SHIP.get_value();
+					int y = CREW.size();
+					for (int i = 0; i < y; i++)
+					{
+						CREW.erase(CREW.begin());
+						MY_SHIP.sub_from_capacity();
+					}
+					OWN_SHIP = false;
+					cout << "Ye have sold yer ship!" << endl;
+					cout << "Wealth +" << MY_SHIP.get_value() << endl;
 					cout << "Type C to Continue: ";
 					input = "";
 					cin >> input;
@@ -1196,6 +1372,7 @@ void ship_yard() //3
 						cin >> input;
 					}
 					clear();
+					ship_yard();
 				}
 				else if (input == "N")
 				{
@@ -1203,6 +1380,10 @@ void ship_yard() //3
 					ship_yard();
 				}
 			}
+		}
+		else if (input == "4")
+		{
+			clear();
 		}
 	}
 }
@@ -1243,7 +1424,14 @@ void status() //5
 	cout << "Health: " << HEALTH << endl;
 	cout << "Wealth: " << WEALTH << endl;
 	cout << endl;
-	MY_SHIP.get_details();
+	if (OWN_SHIP)
+	{
+		MY_SHIP.get_details();
+	}
+	else if (!OWN_SHIP)
+	{
+		cout << "Not a ship owner" << endl;
+	}
 	cout << endl;
 	cout << "Crew size: " << CREW.size() << endl;
 	if (CREW.size() != 0)
@@ -1314,7 +1502,10 @@ bool game_play()
 	else if (input == "1")
 	{
 		clear();
-		sail_away();
+		if (OWN_SHIP)
+		{
+			sail_away();
+		}
 		clear();
 		sail();
 	}

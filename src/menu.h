@@ -18,6 +18,7 @@ class menu
 		void dock();
 		void interact();
 		void edit_crew();
+		void ship_yard();
 };
 
 //main menu
@@ -105,6 +106,17 @@ void menu::edit_crew()
 	cout << "    |   1.    List Crew                  |" << endl;
 	cout << "    |   2.    Get Stats                  |" << endl;
 	cout << "    |   3.    Remove                     |" << endl;
+	cout << "    |   4.    Return                     |" << endl;
+	cout << "    --------------------------------------" << endl;
+}
+
+void menu::ship_yard()
+{
+	cout << "                   Ship Yard" << endl;
+	cout << "    --------------------------------------" << endl;
+	cout << "    |   1.    View Ships Available       |" << endl;
+	cout << "    |   2.    Repair Ship                |" << endl;
+	cout << "    |   3.    Sell Ship                  |" << endl;
 	cout << "    |   4.    Return                     |" << endl;
 	cout << "    --------------------------------------" << endl;
 }
