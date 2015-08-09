@@ -15,11 +15,15 @@ void clear()
     cout << "\x1B[2J\x1B[H";
 }
 
+void SleepMs(int ms) {
+	usleep(ms*1000); //convert to microseconds
+}
+
 void sail_away()
 {
 	if (ANIMATE)
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 7; i++)
 		{
 			for (int j = 0; j < i; j++) {cout << " ";}
 			cout << "                   ~;"<<endl;
@@ -41,7 +45,7 @@ void sail_away()
 			cout << "     \\  o   o          o  /" << endl;
 			cout << "~~^~~^~^~^~^~^~~^~~^^~^~^~~^~^~~^~^~^~" << endl;
 			cout << "~^~^~^^~^~~~~^~^~~~^~^~^~~~~^~^~^~^~~~" << endl;
-			sleep(1);
+			SleepMs(500);
 			clear();
 		}
 	}
@@ -51,7 +55,7 @@ void sail_back()
 {
 	if (ANIMATE)
 	{
-		for (int i = 3; i > 0; i--)
+		for (int i = 7; i > 0; i--)
 		{
 			for (int j = 0; j < i; j++) {cout << " ";}
 			cout << "                 ;~"<<endl;
@@ -73,7 +77,7 @@ void sail_back()
 			cout << "          \\  o        o   o  /" << endl;
 			cout << "~~^~~^~^~^~^~^~~^~~^^~^~^~~^~^~~^~^~^~" << endl;
 			cout << "~^~^~^^~^~~~~^~^~~~^~^~^~~~~^~^~^~^~~~" << endl;
-			sleep(1);
+			SleepMs(500);
 			clear();
 		}
 	}
@@ -85,16 +89,20 @@ void game_over()
 	{
 		cout << "   _____" << endl;
 		cout << "  / ____|" << endl;
+		SleepMs(500);
 		cout << " | |  __  __ _ _ __ ___   ___" << endl;
 		cout << " | | |_ |/ _` | '_ ` _ \\ / _ \\" << endl;
+		SleepMs(500);
 		cout << " | |__| | (_| | | | | | |  __/" << endl;
 		cout << "  \\_____|\\__,_|_| |_| |_|\\___|" << endl;
 		cout << endl;
-		sleep(1);
+		SleepMs(500);
 		cout << "  ____ " << endl;
 		cout << " / __ \\" << endl;
+		SleepMs(500);
 		cout << "| |  | |_   _____ _ __" << endl;
 		cout << "| |  | \\ \\ / / _ \\ '__|" << endl;
+		SleepMs(500);
 		cout << "| |__| |\\ V /  __/ |" << endl;
 		cout << " \\____/  \\_/ \\___|_|" << endl;
 		cout << endl;
