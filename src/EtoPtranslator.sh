@@ -170,7 +170,7 @@ function Trans_to_Pirate
 
 function Print_Skull
 {
-	echo "       Welcome to English to Pirate translator!"
+	echo "              Welcome to Pirate Life!"
 	echo "                       "______
 	echo "                    ".-\""     " \"-.
 	echo "                   "/"           " \\
