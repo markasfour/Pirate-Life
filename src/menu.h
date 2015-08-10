@@ -19,6 +19,7 @@ class menu
 		void interact();
 		void edit_crew();
 		void ship_yard();
+		int repair(int y, int y2, int y3);
 };
 
 //main menu
@@ -99,6 +100,7 @@ void menu::interact()
 
 }
 
+//edit crew menu
 void menu::edit_crew()
 {
 	cout << "                   Edit Crew" << endl;
@@ -110,6 +112,7 @@ void menu::edit_crew()
 	cout << "    --------------------------------------" << endl;
 }
 
+//ship yard main menu
 void menu::ship_yard()
 {
 	cout << "                   Ship Yard" << endl;
@@ -121,4 +124,27 @@ void menu::ship_yard()
 	cout << "    --------------------------------------" << endl;
 }
 
+//repair ship menu
+int menu::repair(int y, int y2, int y3)
+{
+	//conditional statements intentionally not tabbed 
+	int i = 2;
+	cout << "                 Ship Repair" << endl;
+	cout << "    --------------------------------------" << endl;
+	cout << "        1.    +1  health: $" << y << endl;
+	if (y2 != 0)
+	{
+	cout << "        2.    +10 health: $" << y2 << endl;
+	cout << "        3.    full health: $" <<  y3 << endl;
+	i+=2;
+	}
+	else if (y2 == 0 && y3 != 0)
+	{
+	cout << "        2.    full health: $" << y3 << endl;
+	i++;
+	}
+	cout << "        " << i << ".    Return" << endl;
+	cout << "    --------------------------------------" << endl;
+	return i;
+}
 #endif
