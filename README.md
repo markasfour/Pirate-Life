@@ -1,5 +1,5 @@
-# English-to-Pirate
-Simple and fun in terminal English to Pirate translator that uses bash shell scripting.
+# Pirate Life
+Simple and fun in-terminal English to Pirate translator and Pirate Game.
 
 ##Download and run
 
@@ -9,38 +9,38 @@ Clone this repository by running the following in a terminal:
 
 Use the most up-to-date version by running:
 
-    git checkout v2
-
-To use a build that features a pirate game (still in development), run:
-
-	git checkout v2.5
+    git checkout v3
 
 Execute the program by running the following in a terminal:
 
-    src/EtoPtranslator.sh
+    ./pirate.sh
 
 ##Features
 
 * An easy to navigate menu.
 
+* Fully playable pirate game in pre-alpha stages of completion.
+
 * Enter a sentence in English and, in return, receive a Pirate translated version of their sentence. 
 
-* The translated text automatically copied to general clipboard (paste the translation by using `right-click > paste` or by using `CTRL-V`)
+* The translated text automatically copied to general clipboard (paste the translation by using `right-click > paste` or by using `ctrl+v`)
 
-* If the user runs English-to-Pirate translator with the first  parameter containing a path to a file, a translated copy of the file will be outputted.
+* If the user runs `./pirate.sh` with the first  parameter containing a path to a file, a translated copy of the file will be outputted.
 
-* If the user runs English-to-Pirate translator with the second parameter being `-w`, the file provided in the first parameter will be overwritten with the translated copy. 
+* If the user runs `./pirate.sh` with the second parameter being `-w`, the file provided in the first parameter will be overwritten with the translated copy. 
 
-* Automatic pirate insult generator
-
-* NEWEST FEATURE (in progress): PIRATE GAME. This game is still in production. A very early game release is in v. 2.5
+* Automatic pirate insult generator.
 
 ##Bugs and Limitations
 
 * Please report bugs here on GitHub under issues
 
+* Pirate game still in development
+
+* Full functionality tested only in Linux environment
+
 ##Future Plans
 
 * Add to Pirate dictionary
 
-* Project will soon be renamed since this will be more than just a translator
+* Pirate game will be complete by `v4`
