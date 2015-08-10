@@ -96,7 +96,7 @@ void game_over()
 		cout << " | |__| | (_| | | | | | |  __/" << endl;
 		cout << "  \\_____|\\__,_|_| |_| |_|\\___|" << endl;
 		cout << endl;
-		SleepMs(500);
+		SleepMs(1000);
 		cout << "  ____ " << endl;
 		cout << " / __ \\" << endl;
 		SleepMs(500);
@@ -106,6 +106,7 @@ void game_over()
 		cout << "| |__| |\\ V /  __/ |" << endl;
 		cout << " \\____/  \\_/ \\___|_|" << endl;
 		cout << endl;
+		SleepMs(2000);
 	}
 }
 
