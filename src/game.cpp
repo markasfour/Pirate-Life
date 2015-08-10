@@ -25,6 +25,9 @@ vector <person> CREW;
 //MENU
 menu MENU;
 
+//Repair ship inflation
+double REPAIR = 1.0;
+
 //prototypes
 bool game_play();
 void sail();
@@ -997,7 +1000,7 @@ void interact()
 	{
 		if (WEALTH == 0)
 		{
-			cout << "Ye need some wealth to come to the ship yard!" << endl;
+			cout << "Ye need some wealth to come to the docks!" << endl;
 			cout << "Try settin\' sail first." << endl;
 			cout << "(Type C to Continue) : ";
 			cin >> input;
@@ -1322,7 +1325,146 @@ void ship_yard() //3
 			}
 			else if (OWN_SHIP)
 			{
-				//TODO
+				clear();
+				cout << MY_SHIP.get_name() << " health: " << MY_SHIP.get_health() << "/" << MY_SHIP.get_max_health() << endl;
+				cout << "Wealth: " << WEALTH << endl;
+				cout << endl;
+				if (MY_SHIP.get_health() == MY_SHIP.get_max_health())
+				{
+					cout << "Yer ship is at full health! No repairs needed." << endl;
+					cout << "Type C to Continue: ";
+					input = "";
+					cin >> input;
+					while (input != "C")
+					{
+						cin >> input;
+					}
+					clear();
+					ship_yard();
+				}
+				else
+				{
+					int x = MY_SHIP.get_max_health() - MY_SHIP.get_health();
+					int y = 5 * REPAIR;
+					int y2 = static_cast<int>(static_cast<double>(y * 10) * 0.85);
+					int y3 = x * y;
+					if (x >= 10)
+					{
+						if (x >= 50)
+						{
+							y3 = static_cast<int>(static_cast<double>(y3) * .8);
+						}
+						else
+						{
+							y3 = static_cast<int>(static_cast<double>(y3) * .85);
+						}
+					}
+					else
+					{
+						y2 = 0;
+					}
+					int range = 0;
+					range = MENU.repair(y, y2, y3); //gets input range and prints out menu
+					int in = 0;
+					cin >> in;
+					while (in <= 0 && in >= range)
+					{
+						cin >> in;
+					}
+					if (in == 1)
+					{
+						if (WEALTH >= y)
+						{
+							WEALTH -= y;
+							MY_SHIP.repair_ship(1);
+							REPAIR += 0.1;
+							cout << "Ship repaired!" << endl;
+							cout << "Ship health +1" << endl;
+						}
+						else
+						{
+							cout << "Ye don\'t have enough wealth to repair this much!" << endl;
+						}
+						cout << "Type C to Continue: ";
+						input = "";
+						cin >> input;
+						while (input != "C")
+						{
+							cin >> input;
+						}
+						clear();
+						ship_yard();
+					}
+					else if (in == 2)
+					{
+						if (range == 3 && WEALTH >= y3)
+						{
+							WEALTH -= y3;
+							MY_SHIP.repair_ship(x);
+							REPAIR += 0.1;
+							cout << "Ship repaired!" << endl;
+							cout << "Ship health +" << x << endl;
+						}
+						else if (range == 4 && WEALTH >= y2)
+						{
+							WEALTH -= y2;
+							MY_SHIP.repair_ship(10);
+							REPAIR += 0.1;
+							cout << "Ship repaired!" << endl;
+							cout << "Ship health +10" << endl;
+						}
+						else
+						{
+							cout << "Ye don\'t have enough wealth to repair this much!" << endl;
+						}
+						cout << "Type C to Continue: ";
+						input = "";
+						cin >> input;
+						while (input != "C")
+						{
+							cin >> input;
+						}
+						clear();
+						ship_yard();
+					}
+					else if (in == 3)
+					{
+						if (range == 3)
+						{
+							clear();
+							ship_yard();
+						}
+						else if (range == 4)
+						{
+							if (WEALTH >= y3)
+							{
+								WEALTH -= y3;
+								MY_SHIP.repair_ship(x);
+								REPAIR += 0.1;
+								cout << "Ship repaired!" << endl;
+								cout << "Ship health +" << x << endl;
+							}
+							else
+							{
+								cout << "Ye don\'t have enough wealth to repair this much!" << endl;
+							}
+							cout << "Type C to Continue: ";
+							input = "";
+							cin >> input;
+							while (input != "C")
+							{
+								cin >> input;
+							}
+							clear();
+							ship_yard();
+						}
+					}
+					else if (in == 4)
+					{
+						clear();
+						ship_yard();
+					}
+				}	
 			}
 		}
 		else if (input == "3")
