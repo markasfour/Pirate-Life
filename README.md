@@ -5,7 +5,7 @@ Simple and fun in-terminal English to Pirate translator and Pirate Game.
 
 Clone this repository by running the following in a terminal:
 
-    git clone http://github.com/markasfour/English-to-Pirate
+    git clone http://github.com/markasfour/Pirate-Life
 
 Use the most up-to-date version by running:
 
