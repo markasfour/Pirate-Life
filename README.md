@@ -37,7 +37,7 @@ Execute the program by running the following in a terminal:
 
 * Pirate game still in development
 
-* Full functionality tested only in Linux environment
+* Full functionality only in Linux environment
 
 ##Future Plans
 
