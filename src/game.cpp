@@ -2,6 +2,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
+#include <fstream>
 #include "menu.h"
 #include "ship.h"
 #include "people.h"
@@ -1619,7 +1620,71 @@ void status() //5
 void save() //6
 {
 	clear();
-	cout << "This feature is not yet implemented" << endl;
+		cout <<"Saving..." << endl;
+	string file_name = NAME + ".txt";
+	for (int i = 0; i < file_name.size(); i++)
+	{
+		if (file_name.at(i) == ' ')
+		{
+			file_name.at(i) = '_';
+		}
+	}
+	ofstream file (file_name);
+	if (!file.is_open())
+	{
+		cout << "Error while saving" << endl;
+		exit(0);
+	}
+	else
+	{
+		file << NAME << endl;
+		file << HEALTH << endl;
+		file << WEALTH << endl;
+		file << GHOST << endl;
+		file << OWN_SHIP << endl;
+		if (OWN_SHIP)
+		{
+			file << MY_SHIP.get_name() << endl;
+			file << MY_SHIP.get_health() << endl;
+			file << CREW.size() << endl;
+			int soldier = 0;
+			int sailor = 0;
+			int seeker = 0;
+			int swindler = 0;
+			for (int i = 0; i < CREW.size(); i++)
+			{
+				if (CREW.at(i).get_type() == "Soldier")
+				{
+					soldier++;
+				}
+				else if (CREW.at(i).get_type() == "Sailor")
+				{
+					sailor++;
+				}
+				else if (CREW.at(i).get_type() == "Seeker")
+				{
+					seeker++;
+				}
+				else if (CREW.at(i).get_type() == "Swindler")
+				{
+					swindler ++;
+				}
+			}
+			if (CREW.size() > 0)
+			{
+				file << soldier << endl;
+				file << sailor << endl;
+				file << seeker << endl;
+				file << swindler << endl;
+				for (int i = 0; i < CREW.size(); i++)
+				{
+					file << CREW.at(i).get_name() << endl;
+				}
+			}
+		}
+		file.close();
+		cout << "Save complete" << endl;
+	}
 	cout << "(Type C to Continue) : ";
 	string input = "";
 	while (input != "C")
