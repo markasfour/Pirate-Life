@@ -1136,15 +1136,13 @@ void edit_crew()
 	{
 		cout << "Enter a crew member\'s name to retrieve their stats (Type R to return): ";
 		string n = "";
-		string m = "";
-		cin >> n >> m;
-		n += " " + m;
+		cin.ignore();
+		getline(cin, n);
 		while (n != "R" && !(find_crew_member(n)))
 		{
 			cout << "That ain\'t be a person in yer crew." << endl;
-			cin.clear();
-			cin >> n >> m;
-			n += " " + m;
+			cin.ignore();
+			getline(cin, n);
 		}
 		if (n == "R")
 		{
@@ -1169,15 +1167,13 @@ void edit_crew()
 	{
 		cout << "Enter a crew member\'s name to remove (Type R to return): ";
 		string n = "";
-		string m = "";
-		cin >> n >> m;
-		n += " " + m;
+		cin.ignore();
+		getline(cin, n);
 		while (n != "R" && !(find_crew_member(n)))
 		{
 			cout << "That ain\'t be a person in yer crew." << endl;
-			cin.clear();
-			cin >> n >> m;
-			n += " " + m;
+			cin.ignore();
+			getline(cin, n);
 		}
 		if (n == "R")
 		{
@@ -1792,6 +1788,13 @@ bool load()
 			}
 			file.close();
 			cout << "Successfully loaded" << endl;
+			cout << "(Type C to Continue) : ";
+			string input = "";
+			while (input != "C")
+			{
+				cin >> input;
+			}
+			clear();
 			return true;
 		}
 	}
