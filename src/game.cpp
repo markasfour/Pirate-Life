@@ -12,7 +12,7 @@ using namespace std;
 //global variables
 //Main character
 int HEALTH = 100;
-int WEALTH = 0;
+unsigned long long WEALTH = 0;
 string NAME;
 bool GHOST = false;
 bool OWN_SHIP = true;
@@ -68,7 +68,8 @@ bool init()
 		cout << "Done" << endl;
 		
 		cout << "That be the spirit! What be yer name? :"; 
-		cin >> NAME;
+		cin.ignore();
+		getline(cin, NAME);
 		return true;
 	}
 }
@@ -1800,7 +1801,9 @@ bool game_play()
 {
 	MENU.land();
 	string input = "";
-	while (input != "1" && input != "2" && input != "3" && input != "4" && input != "5" && input != "6" && input != "Q")
+	while (input != "1" && input != "2" && input != "3" && input != "4" && 
+		   input != "5" && input != "6" && input != "7" && input != "8" && 
+		   input != "Q")
 	{
 		cin >> input;
 	}
@@ -1842,6 +1845,16 @@ bool game_play()
 	{
 		clear();
 		save();
+	}
+	else if (input == "7")
+	{
+		clear();
+		load();
+	}
+	else if (input == "8")
+	{
+		clear();
+		//settings();
 	}
 }
 
