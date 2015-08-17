@@ -15,9 +15,17 @@ Execute the program by running the following in a terminal:
 
     ./pirate.sh
 
-##Features
+Note #1: Make sure `pirate.sh` is an executable locally.
+If it is not, run the following in a terminal:
 
-* An easy to navigate menu.
+	chmod u+x pirate.sh
+
+Note #2: Make sure `xclip` is installed on your system (used for copying to clipboard feature).
+If it is not, run the following in a terminal:
+
+	sudo apt-get install xclip
+
+##Features
 
 * Fully playable pirate game in pre-alpha stages of completion.
 
