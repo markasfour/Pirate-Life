@@ -99,7 +99,7 @@ void populate_last()
 struct person
 {
 	private:
-				string name;
+		string name;
 		string gender;
 		string type;
 		vector <string> types = {"Soldier", "Sailor", "Seeker", "Swindler"};
@@ -144,6 +144,11 @@ struct person
 				   	   " " + last.at(rand() % last.size());
 				type = types.at(rand() % (types.size() - 1) + 1);
 			}
+		}
+		person(string n, string t) //constructor with name and type
+		{
+			name = n;
+			type = t;
 		}
 		~person() {}; //destructor
 		person(const person & p) //copy constructor

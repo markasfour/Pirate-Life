@@ -59,6 +59,7 @@ class ship
 		string get_name() {return current.name;}; //return name of current ship
 		int get_max_health() {return current.max_health;}; //return max health of current ship
 		int get_health() {return health;}; //return current health of current ship
+		int set_health(int x) {health = x;}; //sets health of current ship
 		int get_max_capacity() {return current.max_capacity;}; //return max capacity of current ship
 		int get_capacity() {return capacity;}; //return current capacity of current ship
 		int get_max_value() {return current.max_value;}; //return max value of current ship

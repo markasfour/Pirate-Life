@@ -1694,6 +1694,108 @@ void save() //6
 	clear();
 }
 
+bool load()
+{
+	clear();
+	cout << "Would ye like to load a previous save? (Y/N)" << endl;
+	string input = "";
+	while (input != "Y" && input != "N")
+	{
+		cin >> input;
+	}
+	if (input == "N")
+	{
+		return false;
+	}
+	else if (input == "Y")
+	{
+		cout << "What was yer name in the previous save?" << endl;
+		string name = "";
+		cin >> name;
+		name += ".txt";
+		ifstream file (name);
+		if (!file.is_open())
+		{
+			cout << "Cannot load " << name << endl;
+			return false;
+		}
+		else
+		{
+			string alpha;
+			getline(file, alpha);
+			NAME = alpha;
+			getline(file, alpha);
+			HEALTH = atoi(alpha.c_str());
+			getline(file, alpha);
+			WEALTH = atoi(alpha.c_str());
+			getline(file, alpha);
+			GHOST = atoi(alpha.c_str());
+			getline(file, alpha);
+			OWN_SHIP = atoi(alpha.c_str());
+			if (!file.eof())
+			{
+				getline(file, alpha);
+				int x = return_ship_index(alpha);
+				MY_SHIP.buy(ships.at(x));
+				getline(file, alpha);
+				MY_SHIP.set_health(atoi(alpha.c_str()));
+				getline(file, alpha);
+				x = atoi(alpha.c_str());
+				if (x != 0)
+				{
+					getline(file, alpha);
+					int soldier = atoi(alpha.c_str());
+					getline(file, alpha);
+					int sailor = atoi(alpha.c_str());
+					getline(file, alpha);
+					int seeker = atoi(alpha.c_str());
+					getline(file, alpha);
+					int swindler = atoi(alpha.c_str());
+					while (soldier != 0 && !file.eof())
+					{
+						getline(file, alpha);
+						person a(alpha, "Soldier");
+						a.give_stats();
+						CREW.push_back(a);
+						MY_SHIP.add_to_capacity();
+						soldier--;
+					}
+					while (sailor != 0 && !file.eof())
+					{
+						getline(file, alpha);
+						person a(alpha, "Sailor");
+						a.give_stats();
+						CREW.push_back(a);
+						MY_SHIP.add_to_capacity();
+						sailor--;
+					}
+					while (seeker != 0 && !file.eof())
+					{
+						getline(file, alpha);
+						person a(alpha, "Seeker");
+						a.give_stats();
+						CREW.push_back(a);
+						MY_SHIP.add_to_capacity();
+						seeker--;
+					}
+					while (swindler != 0 && !file.eof())
+					{
+						getline(file, alpha);
+						person a(alpha, "Swindler");
+						a.give_stats();
+						CREW.push_back(a);
+						MY_SHIP.add_to_capacity();
+						swindler--;
+					}
+				}
+			}
+			file.close();
+			cout << "Successfully loaded" << endl;
+			return true;
+		}
+	}
+}
+
 bool game_play()
 {
 	MENU.land();
@@ -1750,7 +1852,10 @@ int main()
 
 	if (init())
 	{
-		tutorial_init();
+		if (!load())
+		{
+			tutorial_init();
+		}
 		while (game_play());
 	}
 	clear();
