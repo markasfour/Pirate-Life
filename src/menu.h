@@ -31,8 +31,10 @@ void menu::land()
 	cout << "    |   2.    Build a Crew               |" << endl;
 	cout << "    |   3.    Ship Yard                  |" << endl;
 	cout << "    |   4.    Local Tavern               |" << endl;
-	cout << "    |   5.    Check Yer Satus            |" << endl;
+	cout << "    |   5.    Check Yer Status           |" << endl;
 	cout << "    |   6.    Save                       |" << endl;
+	cout << "    |   7.    Load                       |" << endl;
+	cout << "    |   8.    Settings                   |" << endl;
 	cout << "    --------------------------------------" << endl;
 	cout << "    |         Q to quit the game         |" << endl;
 	cout << "    --------------------------------------" << endl;
